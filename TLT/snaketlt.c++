@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <iostream>
+using namespace std;
 
 class MClasse {
   private:
@@ -21,7 +22,7 @@ class MClasse {
 int main(void){
   MClasse ABC ;
   ABC.add(5);
-  std::cout << "OUI\n";
-  
+  cout << "OUI\n";
+
   return 0;
 }
