@@ -21,7 +21,7 @@ class MainSDLWindow {
 
       window = SDL_CreateWindow(name, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_MINIMIZED);
 
-      renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+      renderer = SDL_CreateRenderer(window, -1, 0);
 
       if(!renderer || !window){//initialisation de la SDL
         cout << "Erreur d'initialisation de la SDL : "<< SDL_GetError() << endl;//on affiche l'erreur
@@ -31,3 +31,33 @@ class MainSDLWindow {
       SDL_SetRenderDrawColor(renderer, 0x00, 0x00, 0x00, 0x00);
     }
 };
+
+/*
+
+class Snake {
+  private:
+    Segment *next;
+    Segment *head;
+
+  public:
+
+    int move(int dir){
+
+    }
+
+    void eat(){
+
+    }
+
+};
+
+class GSnake {
+  private:
+
+  public:
+
+    void Disp(){
+
+    }
+};
+*/ 

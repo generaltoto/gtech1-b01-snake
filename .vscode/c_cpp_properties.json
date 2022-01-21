@@ -3,9 +3,11 @@
         {
             "name": "windows-gcc-x86",
             "includePath": [
-                "${workspaceFolder}/**"
+                "${workspaceFolder}/**",
+                "/usr/include/x86_64-linux-gnu",
+                "/usr/include/x86_64-linux-gnu/c++/6"
             ],
-            "compilerPath": "/usr/bin/g++",
+            "compilerPath": "/usr/bin/g++-6",
             "cStandard": "${default}",
             "cppStandard": "${default}",
             "intelliSenseMode": "windows-gcc-x86",
