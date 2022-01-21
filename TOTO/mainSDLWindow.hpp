@@ -7,13 +7,13 @@ private:
   SDL_Renderer * renderer;
 
 public:
-  MainSDLWindow () //called on when class called in main
+  MainSDLWindow ()
   {
     window = NULL;
     renderer = NULL;
   }
 
-  ~MainSDLWindow () //called at the end of main
+  ~MainSDLWindow ()
   {
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
@@ -23,36 +23,41 @@ public:
   void init (void) 
   {
     SDL_Init(SDL_INIT_EVERYTHING);
-    SDL_Window *window = SDL_CreateWindow("window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 900, 900, SDL_WINDOW_MINIMIZED);
-    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, 0);
+    window = SDL_CreateWindow("affiche une grille ta mère", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 900, 900, SDL_WINDOW_MINIMIZED);
+    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    SDL_RenderClear(renderer);
-
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-
-    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-    drawGrid(900, 20, 0);
-
-    SDL_Delay(3000);   
-    SDL_RenderPresent(renderer);
-
-    SDL_Delay(8000);
   }
 
-  void drawGrid (int width, int rows, int surface)
+  void drawGrid (int width, int rows)
   {
     int sizeOfSquare = floor(width / rows);
 
     int x = 0;
     int y = 0;
 
-    for (int l; l<rows; l++)
+    for (int n; n<rows; n++)
     {
       x += sizeOfSquare;
       y += sizeOfSquare;
 
-      SDL_RenderDrawLine(renderer, x, y, x+width, y);
-      SDL_RenderDrawLine(renderer, x, y, x, y+width);
+      SDL_RenderDrawLine(renderer, 0, y, width, y);
+      SDL_RenderDrawLine(renderer, x, 0, x, width);
     }
+  }
+
+  void redraw(void)
+  {
+    SDL_RenderClear(renderer);
+
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
+    SDL_Rect rect = { 0, 0, 900, 900 };
+    SDL_RenderFillRect(renderer, &rect);
+
+    SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+    drawGrid(900, 20);
+   
+    SDL_RenderPresent(renderer);
+
+    SDL_Delay(20);
   }
 };
