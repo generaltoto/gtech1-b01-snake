@@ -5,12 +5,19 @@ using namespace std;
 
 class randomObject 
 {
-public: 
+private:
+  int c, l;
 
+public: 
   int a;
   int add(int b)
   {
     return this->a+b;
+  }
+  int move(int horiz, int vert)
+  {
+    this-> c += horiz;
+    this-> l += vert;
   }
 };
 
