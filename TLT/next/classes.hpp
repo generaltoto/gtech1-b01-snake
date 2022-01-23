@@ -70,7 +70,7 @@ public:
 
 class Snake {
   private:
-    SDL_Rect *rect;
+    SDL_Rect * rect;
     int size = floor(900 / 20);
 
   public:
