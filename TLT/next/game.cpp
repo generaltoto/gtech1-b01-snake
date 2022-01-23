@@ -12,7 +12,7 @@ int main (int argc, char *argv[])
   wdw->init();
   while (!done)
   {
-    wdw->redraw();
+    int size = wdw->redraw();
     SDL_Event event;
     
     while (SDL_PollEvent(&event)) {
@@ -20,6 +20,9 @@ int main (int argc, char *argv[])
         done = SDL_TRUE;
       }
     }
+
+    Snake *snake = new Snake;
+    snake->head(wdw.window, wdw.renderer);
   }
 
   return 0;
