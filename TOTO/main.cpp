@@ -1,18 +1,25 @@
-#include "mainSDLWindow.hpp"
-
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <iostream>
 
-int main (int argc, char *argv[])
+#include "mainSDLWindow.hpp"
+#include "cube.hpp"
+
+#define WIDTH 900
+#define GRID_SIZE 20
+
+
+int main (void)
 {
   bool done = false;
+  int sizeOfSquare = floor(WIDTH / GRID_SIZE); //déclaration dans main pour utilisation globale
 
   MainSDLWindow *wdw = new MainSDLWindow;
-  wdw->init();
+  wdw->init(WIDTH);
+
   while (!done)
   {
-    wdw->redraw();
+    wdw->redraw(sizeOfSquare, WIDTH, GRID_SIZE);
     SDL_Event event;
     
     while (SDL_PollEvent(&event)) {
