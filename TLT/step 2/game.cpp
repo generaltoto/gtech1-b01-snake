@@ -4,7 +4,7 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 
-Snake *snake = new Snake;
+//Snake *snake = new Snake;
 
 int main (int argc, char *argv[])
 {
@@ -22,13 +22,12 @@ int main (int argc, char *argv[])
         done = SDL_TRUE;
       }
     }
-
-    snake->head(wdw.window, wdw.renderer);
+    /*snake->head(wdw.window, wdw.renderer);*/
   }
 
   return 0;
 }
-
+/*
 void keyboard() {
   const Uint8 *keystates = SDL_GetKeyboardState(NULL);
 
@@ -44,4 +43,4 @@ void keyboard() {
   if (keystates[SDL_SCANCODE_RIGHT]) {
     snake.y += 1;
   }
-}
+}*/

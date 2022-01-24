@@ -67,7 +67,7 @@ public:
   }
 };
 
-
+/*
 class Snake {
   private:
     SDL_Rect * rect;
@@ -89,4 +89,4 @@ class Snake {
       SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
       SDL_RenderDrawRect(renderer, rect);
     }
-};
+}*/
