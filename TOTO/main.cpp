@@ -7,33 +7,44 @@
 #define WIDTH 900
 #define GRID_SIZE 20
 
+bool done = false;
+int sizeOfSquare = floor(WIDTH / GRID_SIZE);          //"global" variable from main
+
 
 int main (void)
 {
-  bool done = false;
-  int sizeOfSquare = floor(WIDTH / GRID_SIZE); //déclaration dans main pour utilisation globale
-
-  MainSDLWindow *wdw = new MainSDLWindow;
+  MainSDLWindow *wdw = new MainSDLWindow;             //getting classes
   square *sq = new square;
+  Uint32 frameStart, frameTime, frameDelay = 75;      //frame delay init
 
-  wdw->init(WIDTH);
+  wdw->init(WIDTH);                                   //window init
+  sq->initApple();                                    //apple init
   
   while (!done)
   {
-    SDL_RenderClear(wdw->getRenderer());
+    frameStart = SDL_GetTicks();                       //number of second since initialization
+    SDL_RenderClear(wdw->getRenderer());               //clearing renderer
 
-    wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);
+    wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);   //disp grid
 
-    sq->draw(sizeOfSquare, wdw->getRenderer());
-    sq->move();
-
-    SDL_RenderPresent(wdw->getRenderer());
-
-    SDL_UpdateWindowSurface(wdw->getWindow());
+    sq->draw(sizeOfSquare, wdw->getRenderer());        //disp square
+    sq->randomApple(sizeOfSquare, wdw->getRenderer()); //random Apple position
     
-    SDL_Delay(10);
-    SDL_Event event;
+    sq->move();                                        //checking for moves
+    sq->eatApple(sizeOfSquare, wdw->getRenderer());    //checking eat apple
+    done = sq->collision();                            //checking for collisions
+
+    SDL_RenderPresent(wdw->getRenderer());             //disp everything on window
+
+    SDL_UpdateWindowSurface(wdw->getWindow());         //update window
+
+    frameTime = SDL_GetTicks() - frameStart;           //framerate managing 
+		if ( frameTime < frameDelay )
+		{
+			SDL_Delay( frameDelay - frameTime );
+		}
     
+    SDL_Event event;                                   //checking for quit event
     while (SDL_PollEvent(&event)) {
       if (event.type == SDL_QUIT) {
         done = SDL_TRUE;
