@@ -1,3 +1,5 @@
+#pragma once
+
 #include <SDL2/SDL.h>
 
 class MainSDLWindow 
@@ -23,7 +25,10 @@ public:
 
   int init (int width);
 
-  void redraw(int SizeOfSquare, int width, int size);
+  void drawWindow(int SizeOfSquare, int width, int size);
 
-  int drawGrid (int SizeOfSquare, int width, int size);
+  void drawGrid (int SizeOfSquare, int width, int size);
+
+  SDL_Renderer *getRenderer(){ return renderer; }
+  SDL_Window *getWindow(){ return window; }
 };
