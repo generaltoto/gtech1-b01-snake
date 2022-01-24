@@ -8,20 +8,20 @@
 #define WIDTH 900
 #define GRID_SIZE 20
 
-
 int main (void) {
   bool done = false;
   int sizeOfSquare = floor(WIDTH / GRID_SIZE); //déclaration dans main pour utilisation globale
 
   MainSDLWindow *wdw = new MainSDLWindow();
   wdw->init(WIDTH);
-  Square *c = new Square();
+  Square *s = new Square();
+  wdw->draw(sizeOfSquare, WIDTH, GRID_SIZE);
 
   while (!done) {
-    wdw->draw(sizeOfSquare, WIDTH, GRID_SIZE);
-    c->draw(sizeOfSquare,wdw->getRenderer()); //dessin du cube depuis =cube.pp= fonction =draw()=
+    s->draw(sizeOfSquare,wdw->getRenderer()); //dessin du cube depuis =cube.pp= fonction =draw()=
     SDL_RenderPresent(wdw->getRenderer());
-
+    s->move();
+    
     SDL_Event event;
     
     while (SDL_PollEvent(&event)) {

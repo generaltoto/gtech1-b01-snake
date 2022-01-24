@@ -7,7 +7,7 @@ class Square {
     int dirY = 0;
     int posX = 10;
     int posY = 10;
-    Segment* head;
+    //Segment* head;
 
   public:
     Square(){
