@@ -5,7 +5,10 @@ using namespace std;
 #include "square.hpp"
 
 int MainSDLWindow::init(int width) { //réupération de width avec define dans =main.cpp=
-  SDL_Init(SDL_INIT_VIDEO);
+  if(SDL_Init(SDL_INIT_VIDEO) < 0) {
+   printf("Erreur d'initialisation de la SDL : %s\n",SDL_GetError());//on affiche l'erreur
+   return EXIT_FAILURE;//on sort du programme pour éviter de plus gros problèmes
+}
   window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width, SDL_WINDOW_MINIMIZED);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
   cout << window << endl;

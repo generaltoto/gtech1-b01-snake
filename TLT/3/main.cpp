@@ -20,8 +20,7 @@ int main (void) {
   while (!done) {
     s->draw(sizeOfSquare,wdw->getRenderer()); //dessin du cube depuis =cube.pp= fonction =draw()=
     SDL_RenderPresent(wdw->getRenderer());
-    s->move();
-    
+
     SDL_Event event;
     
     while (SDL_PollEvent(&event)) {
