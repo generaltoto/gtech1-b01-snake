@@ -1,12 +1,12 @@
+#pragma once 
+
 #include <SDL2/SDL.h>
 
-class cube
+class square
 {
 private:
 
-  SDL_Renderer *renderer;
-
-  int dirX = 1;
+  int dirX = 0;
   int dirY = 0;
 
   int posX = 10;
@@ -14,7 +14,7 @@ private:
 
 public:
 
-  void draw(int sizeOfSquare);
+  void draw(int sizeOfSquare, SDL_Renderer *renderer);
 
   void move ();
 
