@@ -31,7 +31,6 @@ void Square::draw(int sizeOfSquare,SDL_Renderer * renderer) {
   SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
   SDL_Rect rect = { posX * sizeOfSquare, posY * sizeOfSquare, sizeOfSquare-1, sizeOfSquare-1 };
   SDL_RenderFillRect(renderer, &rect);
-  SDL_RenderPresent(renderer);
 }
 
 void Square::eat() {

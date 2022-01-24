@@ -21,7 +21,6 @@ int MainSDLWindow::init(int width) { //réupération de width avec define dans =
 }
 
 int MainSDLWindow::draw(int sizeOfSquare, int width, int size) { //recupération arguments dans =main.cpp=
-  SDL_RenderClear(renderer);
 
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
   SDL_Rect rect = { 0, 0, width, width }; //define WIDTH dans =main.cpp=
@@ -38,6 +37,5 @@ int MainSDLWindow::draw(int sizeOfSquare, int width, int size) { //recupération
     SDL_RenderDrawLine(renderer, 0, y, width, y);
     SDL_RenderDrawLine(renderer, x, 0, x, width);
   }
-  SDL_RenderPresent(renderer);
   return sizeOfSquare;
 }

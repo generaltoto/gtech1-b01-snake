@@ -14,19 +14,24 @@ int main (void) {
   int sizeOfSquare = floor(WIDTH / GRID_SIZE); //déclaration dans main pour utilisation globale
 
   MainSDLWindow *wdw = new MainSDLWindow();
-  wdw->init(WIDTH);
-  //int frame_time_start = SDL_GetTicks();
   Square *s = new Square();
-  wdw->draw(sizeOfSquare, WIDTH, GRID_SIZE);
+
+  wdw->init(WIDTH);
 
   while (!done) {
-    ;
-    s->draw(sizeOfSquare,wdw->getRenderer()); //dessin du cube depuis =cube.pp= fonction =draw()=
+    int frame_time_start = SDL_GetTicks();
 
-    //frame_time_interval = SDL_GetTicks() - frame_time_start;
-    //cout << frame_time_interval << endl;
+    SDL_RenderClear(wdw->getRenderer());
+    wdw->draw(sizeOfSquare, WIDTH, GRID_SIZE);
+    s->draw(sizeOfSquare,wdw->getRenderer());
+    s->move();
+    SDL_RenderPresent(wdw->getRenderer());
+    SDL_UpdateWindowSurface(wdw->getWindow());
+
+    int frame_time_interval = SDL_GetTicks() - frame_time_start;
+    SDL_Delay(frame_time_interval);
+
     SDL_Event event;
-    
     while (SDL_PollEvent(&event)) {
       if (event.type == SDL_QUIT) {
         done = SDL_TRUE;
