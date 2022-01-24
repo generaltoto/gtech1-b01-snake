@@ -23,7 +23,7 @@ public:
 
   int init (int width);
 
-  int redraw(int SizeOfSquare, int width, int size);
+  void redraw(int SizeOfSquare, int width, int size);
 
   int drawGrid (int SizeOfSquare, int width, int size);
 };

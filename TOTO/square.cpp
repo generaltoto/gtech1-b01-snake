@@ -1,4 +1,4 @@
-#include "cube.hpp"
+#include "square.hpp"
 
 #define WIDTH 900
 #define GRID_SIZE 20
@@ -28,9 +28,9 @@ void cube::move()
   posY += posY * dirY;
 }
 
-int cube::draw(int sizeOfSquare)
+void cube::draw(int sizeOfSquare)
 {
   SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
-  SDL_Rect rect = { posX * sizeOfSquare, posY * sizeOfSquare, GRID_SIZE, GRID_SIZE };
+  SDL_Rect rect = { posX * sizeOfSquare, posY * sizeOfSquare, sizeOfSquare-1, sizeOfSquare-1 };
   SDL_RenderDrawRect(renderer, &rect);
 }
