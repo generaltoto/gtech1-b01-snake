@@ -75,5 +75,6 @@ void square::eatApple (int sizeOfSquare, SDL_Renderer *renderer)
   if (appleX == posX && appleY == posY) {
     initApple();
     randomApple(sizeOfSquare, renderer);
-  }
+    bool appleEaten = true; 
+  } else { bool appleEaten = false; }
 }
