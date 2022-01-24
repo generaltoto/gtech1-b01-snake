@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "mainSDLWindow.hpp"
-#include "cube.hpp"
+#include "square.hpp"
 
 #define WIDTH 900
 #define GRID_SIZE 20

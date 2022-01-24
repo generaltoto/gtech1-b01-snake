@@ -1,15 +1,24 @@
+#include <iostream>
+using namespace std;
+
 #include "mainSDLWindow.hpp"
-#include "cube.hpp"
+#include "square.hpp"
 
 int MainSDLWindow::init(int width) //réupération de width avec define dans =main.cpp=
 {
-  SDL_Init(SDL_INIT_EVERYTHING);
+  SDL_Init(SDL_INIT_VIDEO);
   window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width, SDL_WINDOW_MINIMIZED);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+
+  if ( !renderer || !window )
+  {
+    cout << "An error has occured, error code : " << SDL_GetError() << endl;
+    return EXIT_FAILURE;
+  } else { return EXIT_SUCCESS; }
 }
 
 
-int MainSDLWindow::redraw(int sizeOfSquare, int width, int size) //recupération arguments dans =main.cpp=
+void MainSDLWindow::redraw(int sizeOfSquare, int width, int size) //recupération arguments dans =main.cpp=
 {
   SDL_RenderClear(renderer);
 

@@ -14,7 +14,7 @@ private:
 
 public:
 
-  int draw(int sizeOfSquare);
+  void draw(int sizeOfSquare);
 
   void move ();
 
