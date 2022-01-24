@@ -25,4 +25,7 @@ class MainSDLWindow {
     SDL_Renderer * getRenderer(){
       return renderer;
     }
+    SDL_Window *getWindow(){ 
+      return window; 
+    }
 };

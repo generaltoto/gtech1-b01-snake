@@ -11,7 +11,6 @@ int MainSDLWindow::init(int width) { //réupération de width avec define dans =
 }
   window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width, SDL_WINDOW_MINIMIZED);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-  cout << window << endl;
 
   if ( !renderer || !window ) {
     cout << "An error has occured, error code : " << SDL_GetError() << endl;
@@ -39,5 +38,6 @@ int MainSDLWindow::draw(int sizeOfSquare, int width, int size) { //recupération
     SDL_RenderDrawLine(renderer, 0, y, width, y);
     SDL_RenderDrawLine(renderer, x, 0, x, width);
   }
+  SDL_RenderPresent(renderer);
   return sizeOfSquare;
 }

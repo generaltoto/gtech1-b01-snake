@@ -38,7 +38,4 @@ void MainSDLWindow::drawWindow(int sizeOfSquare, int width, int size) //recupér
     SDL_RenderDrawLine(renderer, 0, y, width, y);
     SDL_RenderDrawLine(renderer, x, 0, x, width);
   }
-  
-  
-
 }
