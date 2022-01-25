@@ -2,8 +2,6 @@
 using namespace std;
 #include "square.hpp"
 
-#define WIDTH 900
-#define GRID_SIZE 20
 
 void square::move()
 {
@@ -43,20 +41,16 @@ void square::draw(int sizeOfSquare, SDL_Renderer *renderer)
 
 bool square::collision()
 {
-  if (posX <=0 || posX >= 20){ return true; } 
-  else if (posY <= 0 || posY >= 20) { return true; }
-  else { return false; }
+  if (posX <0 || posX >= 20 || posY < 0 || posY >= 20){ return true; } 
+  return false;
 }
 
 
 
 void square::initApple()
 {
-  appleX = rand() % 19 + 1;
-  while (appleX == posX) { appleX = rand() % 19 + 1; }
-
-  appleY = rand() % 19 + 1;
-  while (appleY == posY) { appleY = rand() % 19 + 1; }
+  do { appleX = rand() % 19 + 1; } while (appleX == posX);
+  do { appleY = rand() % 19 + 1; } while (appleY == posY);
 }
 
 

@@ -15,7 +15,7 @@ int main (void)
 {
   MainSDLWindow *wdw = new MainSDLWindow;             //getting classes
   square *sq = new square;
-  Uint32 frameStart, frameTime, frameDelay = 75;      //frame delay init
+  Uint32 frameStart, frameTime, frameDelay = 90;      //frame delay init, the greater the slower
 
   wdw->init(WIDTH);                                   //window init
   sq->initApple();                                    //apple init

@@ -5,14 +5,11 @@ class square
 {
 private:
 
-  int dirX = 0;
-  int dirY = 0;
+  int dirX = 0, dirY = 0;
 
-  int posX = 10;
-  int posY = 10;
+  int posX = 10, posY = 10;
 
-  int appleX;
-  int appleY;
+  int appleX, appleY;
 
 public:
 
