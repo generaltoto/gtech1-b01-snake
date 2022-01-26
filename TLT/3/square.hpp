@@ -3,10 +3,8 @@
 
 class Square {  
   private:
-    int dirX = 1;
-    int dirY = 0;
-    int posX = 10;
-    int posY = 10;
+    int X = 0;
+    int Y = 0;
     //Segment* head;
 
   public:
@@ -15,7 +13,7 @@ class Square {
 
     void draw(int sizeOfSquare, SDL_Renderer * renderer);
 
-    void move();
+    void move(int sizeOfSquare);
 
     void eat();
 };
