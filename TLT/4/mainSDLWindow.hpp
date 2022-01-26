@@ -2,8 +2,7 @@
 
 #include <SDL2/SDL.h>
 
-class MainSDLWindow 
-{
+class MainSDLWindow {
 private:
   SDL_Window *window;
   SDL_Renderer *renderer;

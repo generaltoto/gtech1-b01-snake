@@ -1,8 +1,7 @@
 #pragma once 
 #include <SDL2/SDL.h>
 
-class snake 
-{
+class Snake  {
 private: 
 
 public:
