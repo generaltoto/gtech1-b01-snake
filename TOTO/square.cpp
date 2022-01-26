@@ -1,5 +1,4 @@
 #include <iostream>
-using namespace std;
 #include "square.hpp"
 
 
@@ -64,11 +63,11 @@ void square::randomApple (int sizeOfSquare, SDL_Renderer *renderer)
 
 
 
-void square::eatApple (int sizeOfSquare, SDL_Renderer *renderer)
+int square::eatApple (int sizeOfSquare, SDL_Renderer *renderer)
 {
   if (appleX == posX && appleY == posY) {
     initApple();
     randomApple(sizeOfSquare, renderer);
-    bool appleEaten = true; 
-  } else { bool appleEaten = false; }
+    return 1; 
+  } else { return 0; }
 }

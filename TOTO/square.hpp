@@ -13,9 +13,9 @@ private:
 
 public:
 
-  void draw(int sizeOfSquare, SDL_Renderer *renderer);
-
   void move();
+
+  void draw(int sizeOfSquare, SDL_Renderer *renderer);
 
   bool collision();
 
@@ -23,6 +23,6 @@ public:
 
   void initApple();
 
-  void eatApple(int sizeOfSquare, SDL_Renderer *renderer);
+  int eatApple(int sizeOfSquare, SDL_Renderer *renderer);
 
 };
