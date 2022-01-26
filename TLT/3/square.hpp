@@ -3,8 +3,9 @@
 
 class Square {  
   private:
-    int X = 30;
-    int Y = 30;
+    int dirX, dirY = 0;
+
+    int posX, posY = 10;
     //Segment* head;
 
   public:
@@ -15,5 +16,11 @@ class Square {
 
     void move(int sizeOfSquare, bool axe);
 
-    void eat();
+    bool collision(int rows);
+
+    bool isOnApple(int appleX, int appleY);
+
+    int getPos();
+
+    int getDir();
 };

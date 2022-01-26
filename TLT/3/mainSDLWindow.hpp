@@ -20,7 +20,7 @@ class MainSDLWindow {
 
     int init (int width);
 
-    //int draw(int SizeOfSquare, int width, int size);
+    //void draw(int SizeOfSquare, int width, int size);
 
     SDL_Renderer * getRenderer(){
       return renderer;

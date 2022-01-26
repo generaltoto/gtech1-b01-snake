@@ -20,22 +20,21 @@ int MainSDLWindow::init(int width) { //réupération de width avec define dans =
   }
 }
 
-/*int MainSDLWindow::draw(int sizeOfSquare, int width, int size) { //recupération arguments dans =main.cpp=
-
+/*void MainSDLWindow::draw(int sizeOfSquare, int width, int size){ //recupération arguments dans =main.cpp= 
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
   SDL_Rect rect = { 0, 0, width, width }; //define WIDTH dans =main.cpp=
   SDL_RenderFillRect(renderer, &rect);
 
-  SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
-  int x = 0;
-  int y = 0;
+  SDL_SetRenderDrawColor(renderer, 69, 69, 69, SDL_ALPHA_OPAQUE);
 
-  for (int n; n<size; n++) { //on balaye le nombre de colonnes 
+  //drawing grid
+  int x = 0, y = 0;
+
+  for (int n; n<size; n++){ // n takes values from 0 to GRID_SIZE 
     x += sizeOfSquare;
     y += sizeOfSquare;
 
     SDL_RenderDrawLine(renderer, 0, y, width, y);
     SDL_RenderDrawLine(renderer, x, 0, x, width);
   }
-  return sizeOfSquare;
 }*/
