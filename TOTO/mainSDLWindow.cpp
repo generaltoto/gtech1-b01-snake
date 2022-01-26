@@ -84,16 +84,12 @@ void MainSDLWindow::draw_number( int number, int posX, int posY )
 	// Cannot display more than two digits.
 	if ( number >= 100 )
 		return;
-
-	// Two digits.
-	if ( number >= 10 )
+	if ( number >= 10 ) // Two digits.
 	{
 		draw_digit( number % 10, posX + 40, posY );
 		draw_digit( number / 10, posX, posY );
 	}
-
-	// One digit.
-	else
+	else // One digit.
 	{
 		draw_digit( number, posX, posY );
 	}
