@@ -3,8 +3,9 @@
 #include "mainSDLWindow.hpp"
 #include "snake.hpp"
 #include "fruit.hpp"
+#include "segment.hpp"
 
-#define WIDTH 700                                                        //900px grid
+#define WIDTH 700                                                        //700px grid
 #define GRID_SIZE 20                                                     //20 rows grid
 
 bool done = false;                                                       //"global" variables from main
@@ -15,7 +16,7 @@ int main (void) {
   srand(time(0));
 
   MainSDLWindow *wdw = new MainSDLWindow;                                 //getting =MainSDLWindow= class as =wdw=
-  Snake *sk = new Snake;
+  HSnake *sk = new HSnake;
   Fruit *fr = new Fruit;                                                  //getting =fruit=         class as =fr=
   Uint32 frameStart, frameTime, frameDelay = 80;                          //frame delay init, the greater the slower
 
@@ -28,7 +29,8 @@ int main (void) {
 
     wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);                      //disp grid
 
-    sk->drawHead(sizeOfSquare, wdw->getRenderer());                           //disp square
+    sk->drawHead(sizeOfSquare, wdw->getRenderer());
+    sk->next->draw(sizeOfSquare, wdw->getRenderer());                           //disp square
     fr->randomApple(sizeOfSquare, wdw->getRenderer());                    //random Apple position
     
     if (sk->isOnApple(fr->appleX, fr->appleY) == true) {
@@ -42,8 +44,10 @@ int main (void) {
 
     SDL_RenderPresent(wdw->getRenderer());                                //disp everything on window
 
-    SDL_UpdateWindowSurface(wdw->getWindow());                            //update window
-    sk->move();                                                           //checking for moves
+    SDL_UpdateWindowSurface(wdw->getWindow());   
+    int exposX, exposY = sk->move();                         //update window
+    sk->next->follow(exposX, exposY);
+                                                               //checking for moves
 
     frameTime = SDL_GetTicks() - frameStart;                              //framerate managing 
 		if ( frameTime < frameDelay ) {

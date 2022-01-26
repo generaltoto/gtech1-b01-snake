@@ -9,14 +9,12 @@ private:
 
 public:
 
-  MainSDLWindow ()
-  {
+  MainSDLWindow () {
     window = NULL;
     renderer = NULL;
   }
 
-  ~MainSDLWindow ()
-  {
+  ~MainSDLWindow () {
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
 

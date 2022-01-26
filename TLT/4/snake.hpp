@@ -1,7 +1,8 @@
 #pragma once 
 #include <SDL2/SDL.h>
+#include "segment.hpp"
 
-class Snake  {
+class HSnake  {
 private: 
 
 public:
@@ -10,7 +11,9 @@ public:
 
   int posX = 10, posY = 10;
 
-  void move();
+  Segment * next = new Segment;
+
+  int move();
 
   void drawHead(int sizeOfSquare, SDL_Renderer *renderer);
 
