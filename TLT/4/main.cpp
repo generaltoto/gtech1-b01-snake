@@ -4,7 +4,7 @@
 #include "snake.hpp"
 #include "fruit.hpp"
 
-#define WIDTH 900                                                        //900px grid
+#define WIDTH 700                                                        //900px grid
 #define GRID_SIZE 20                                                     //20 rows grid
 
 bool done = false;                                                       //"global" variables from main
@@ -60,8 +60,6 @@ int main (void)
       }
     }
   }
-  std::cout << score << std::endl;
-
   delete sk, fr, wdw;
   return 0;
 }

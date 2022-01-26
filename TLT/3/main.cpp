@@ -8,7 +8,7 @@ using namespace std;
 #include "fruit.hpp"
 
 #define WIDTH 700
-#define GRID_SIZE 20
+#define GRID_SIZE 30
 
 int main (void) {
   srand(time(0));
