@@ -13,10 +13,12 @@ int score = 0;
 
 int main (void)
 {
+  srand(time(0));
+
   MainSDLWindow *wdw = new MainSDLWindow;                                 //getting =MainSDLWindow= class as =wdw=
   snake *sk = new snake;
   fruit *fr = new fruit;                                                  //getting =fruit=         class as =fr=
-  Uint32 frameStart, frameTime, frameDelay = 69;                          //frame delay init, the greater the slower
+  Uint32 frameStart, frameTime, frameDelay = 80;                          //frame delay init, the greater the slower
 
   wdw->init(WIDTH, score);                                                //window init
   fr->initApple(GRID_SIZE, sk->posX, sk->posY);                                               //apple init
@@ -35,7 +37,7 @@ int main (void)
     {
       score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);   //checking eat apple, score += 1 if so
     }
-    
+    wdw->draw_number(score, 10, WIDTH+10);
     done = sk->collision(GRID_SIZE);                                      //checking for collisions
 
     SDL_SetRenderDrawColor(wdw->getRenderer(), 0, 0, 0, 255);

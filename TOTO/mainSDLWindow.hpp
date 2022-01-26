@@ -25,13 +25,15 @@ public:
     SDL_Quit();
   }
 
+  SDL_Renderer *getRenderer(){ return renderer; }
+  SDL_Window *getWindow(){ return window; }
+
   int init (int width, int score);
 
   void drawWindow(int SizeOfSquare, int width, int size);
 
-  void drawGrid (int SizeOfSquare, int width, int size);
+  void draw_digit(int digit, int posX, int posY );
 
+  void draw_number( int number, int posX, int posY );
 
-  SDL_Renderer *getRenderer(){ return renderer; }
-  SDL_Window *getWindow(){ return window; }
 };
