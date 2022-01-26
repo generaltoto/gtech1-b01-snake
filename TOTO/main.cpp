@@ -60,8 +60,6 @@ int main (void)
       }
     }
   }
-  std::cout << score << std::endl;
-
   delete sk, fr, wdw;
   return 0;
 }
