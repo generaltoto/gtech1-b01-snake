@@ -2,20 +2,16 @@
 #include <string>
 
 #include "mainSDLWindow.hpp"
-#include "square.hpp"
 
 int MainSDLWindow::init(int width, int score) //réupération de width avec define dans =main.cpp=
 {
   SDL_Init(SDL_INIT_VIDEO);
-  TTF_Init();
+  //TTF_Init();
 
-  std::string displayedText = std::__cxx11::to_string(score);
+  //std::string displayedText = std::__cxx11::to_string(score);
 
-  window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width, SDL_WINDOW_MINIMIZED);
+  window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width + (width/10), SDL_WINDOW_MINIMIZED);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-  font = TTF_OpenFont("Times.ttf", 50);
-  //scoreSurface = TTF_RenderText_Solid(font,"9", color);
-  //scoreTexture = SDL_CreateTextureFromSurface(renderer, scoreSurface);
 
   if ( !renderer || !window )
   {

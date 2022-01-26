@@ -8,10 +8,6 @@ class MainSDLWindow
 private:
   SDL_Window *window;
   SDL_Renderer *renderer;
-  SDL_Surface *scoreSurface;
-  SDL_Texture *scoreTexture;
-  SDL_Color color = { 40, 40, 40 };
-  TTF_Font *font;
 
 public:
 
@@ -19,8 +15,6 @@ public:
   {
     window = NULL;
     renderer = NULL;
-    scoreSurface = NULL;
-    scoreTexture = NULL;
   }
 
   ~MainSDLWindow ()
@@ -28,11 +22,6 @@ public:
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
 
-    SDL_FreeSurface(scoreSurface);
-    SDL_DestroyTexture(scoreTexture);
-    TTF_CloseFont(font);
-    
-    TTF_Quit();
     SDL_Quit();
   }
 

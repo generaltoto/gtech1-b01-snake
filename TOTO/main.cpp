@@ -1,50 +1,57 @@
 #include <SDL2/SDL.h>
 #include <iostream>
-
 #include "mainSDLWindow.hpp"
-#include "square.hpp"
+#include "snake.hpp"
+#include "fruit.hpp"
 
-#define WIDTH 900                                     //900px grid
-#define GRID_SIZE 20                                  //20 rows grid
+#define WIDTH 900                                                        //900px grid
+#define GRID_SIZE 20                                                     //20 rows grid
 
-bool done = false;                                    //"global" variables from main
+bool done = false;                                                       //"global" variables from main
 int sizeOfSquare = floor(WIDTH / GRID_SIZE);
 int score = 0;
 
 int main (void)
 {
-  MainSDLWindow *wdw = new MainSDLWindow;                      //getting =MainSDLWindow= class as =wdw=
-  square *sq = new square;                                     //getting =square=        class as =sq=
-  Uint32 frameStart, frameTime, frameDelay = 90;               //frame delay init, the greater the slower
+  MainSDLWindow *wdw = new MainSDLWindow;                                 //getting =MainSDLWindow= class as =wdw=
+  snake *sk = new snake;
+  fruit *fr = new fruit;                                                  //getting =fruit=         class as =fr=
+  Uint32 frameStart, frameTime, frameDelay = 69;                          //frame delay init, the greater the slower
 
-  wdw->init(WIDTH, score);                                     //window init
-  sq->initApple();                                             //apple init
+  wdw->init(WIDTH, score);                                                //window init
+  fr->initApple(GRID_SIZE, sk->posX, sk->posY);                                               //apple init
   
   while (!done)
   {
-    frameStart = SDL_GetTicks();                               //number of second since initialization
-    SDL_RenderClear(wdw->getRenderer());                       //clearing renderer
+    frameStart = SDL_GetTicks();                                          //number of second since initialization
+    SDL_RenderClear(wdw->getRenderer());                                  //clearing renderer
 
-    wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);           //disp grid
+    wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);                      //disp grid
 
-    sq->draw(sizeOfSquare, wdw->getRenderer());                //disp square
-    sq->randomApple(sizeOfSquare, wdw->getRenderer());         //random Apple position
+    sk->drawHead(sizeOfSquare, wdw->getRenderer());                           //disp square
+    fr->randomApple(sizeOfSquare, wdw->getRenderer());                    //random Apple position
     
-    sq->move();                                                //checking for moves
-    score = sq->eatApple(sizeOfSquare, wdw->getRenderer());    //checking eat apple, score += 1 if so
-    done = sq->collision();                                    //checking for collisions
+    if (sk->isOnApple(fr->appleX, fr->appleY) == true)
+    {
+      score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);   //checking eat apple, score += 1 if so
+    }
+    
+    done = sk->collision(GRID_SIZE);                                      //checking for collisions
 
-    SDL_RenderPresent(wdw->getRenderer());                     //disp everything on window
+    SDL_SetRenderDrawColor(wdw->getRenderer(), 0, 0, 0, 255);
 
-    SDL_UpdateWindowSurface(wdw->getWindow());                 //update window
+    SDL_RenderPresent(wdw->getRenderer());                                //disp everything on window
 
-    frameTime = SDL_GetTicks() - frameStart;                   //framerate managing 
+    SDL_UpdateWindowSurface(wdw->getWindow());                            //update window
+    sk->move();                                                           //checking for moves
+
+    frameTime = SDL_GetTicks() - frameStart;                              //framerate managing 
 		if ( frameTime < frameDelay )
 		{
 			SDL_Delay( frameDelay - frameTime );
 		}
     
-    SDL_Event event;                                           //checking for quit event
+    SDL_Event event;                                                      //checking for quit event
     while (SDL_PollEvent(&event)) {
       if (event.type == SDL_QUIT) {
         done = SDL_TRUE;
@@ -53,5 +60,6 @@ int main (void)
   }
   std::cout << score << std::endl;
 
+  delete sk, fr, wdw;
   return 0;
 }
