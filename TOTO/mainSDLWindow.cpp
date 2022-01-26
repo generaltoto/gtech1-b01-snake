@@ -1,20 +1,24 @@
 #include <iostream>
-using namespace std;
+#include <string>
 
 #include "mainSDLWindow.hpp"
-#include "square.hpp"
 
-int MainSDLWindow::init(int width) //réupération de width avec define dans =main.cpp=
+int MainSDLWindow::init(int width, int score) //réupération de width avec define dans =main.cpp=
 {
   SDL_Init(SDL_INIT_VIDEO);
-  window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width, SDL_WINDOW_MINIMIZED);
+  //TTF_Init();
+
+  //std::string displayedText = std::__cxx11::to_string(score);
+
+  window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width + (width/10), SDL_WINDOW_MINIMIZED);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
   if ( !renderer || !window )
   {
-    cout << "An error has occured, error code : " << SDL_GetError() << endl;
+    std::cout << "An error has occured, error code : " << SDL_GetError() << std::endl;
     return EXIT_FAILURE;
-  } else { return EXIT_SUCCESS; }
+  } 
+  return EXIT_SUCCESS;
 }
 
 
@@ -24,11 +28,10 @@ void MainSDLWindow::drawWindow(int sizeOfSquare, int width, int size) //recupér
   SDL_Rect rect = { 0, 0, width, width }; //define WIDTH dans =main.cpp=
   SDL_RenderFillRect(renderer, &rect);
 
-  SDL_SetRenderDrawColor(renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+  SDL_SetRenderDrawColor(renderer, 69, 69, 69, SDL_ALPHA_OPAQUE);
 
   //drawing grid
-  int x = 0;
-  int y = 0;
+  int x = 0, y = 0;
 
   for (int n; n<size; n++) // n takes values from 0 to GRID_SIZE 
   {

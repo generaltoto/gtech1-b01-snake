@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <iostream>
+using namespace std;
 
 #include "mainSDLWindow.hpp"
 #include "square.hpp"
@@ -9,7 +10,7 @@
 #define GRID_SIZE 20
 
 int main (void) {
-  Uint32 frameStart, frameTime, frameDelay = 50;
+  Uint32 frameStart, frameTime, frameDelay = 70;
   int sizeOfSquare = floor(WIDTH / GRID_SIZE); //déclaration dans main pour utilisation globale
   bool done = false;
 
@@ -18,7 +19,6 @@ int main (void) {
 
   wdw->init(WIDTH);
   
-
   while (!done) {
     frameStart = SDL_GetTicks();
 
@@ -34,7 +34,8 @@ int main (void) {
         }
       }
     }
-    s->move(sizeOfSquare);
+    bool axe = false;
+    s->move(sizeOfSquare, axe);
     //wdw->draw(sizeOfSquare, WIDTH, GRID_SIZE);
     s->draw(sizeOfSquare,wdw->getRenderer());
 
