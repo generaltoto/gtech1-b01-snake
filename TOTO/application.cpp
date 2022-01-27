@@ -10,13 +10,13 @@ snake *sk = new snake;
 fruit *fr = new fruit;
 Uint32 frameStart, frameTime, frameDelay = 95;
 
-void application::initGame(int width, int size)
+void application::initGame(void)
 {
   srand(time(0));
 
   score = 0;
-  wdw->init(width, score);
-  fr->initApple(size, sk->posX, sk->posY);
+  wdw->init(WIDTH, score);
+  fr->initApple(GRID_SIZE, sk->posX, sk->posY);
 }
 
 
@@ -27,24 +27,23 @@ void application::deleteObject(void)
 
 
 
-bool application::runGAme(int sizeOfSquare, int width, int size, bool done)
+bool application::runGAme(bool done)
 {
   frameStart = SDL_GetTicks();
   SDL_RenderClear(wdw->getRenderer());
 
-  wdw->drawWindow(sizeOfSquare, width, size);
+  wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);
 
   sk->drawHead(sizeOfSquare, wdw->getRenderer());
   fr->randomApple(sizeOfSquare, wdw->getRenderer());
   
   if (sk->isOnApple(fr->appleX, fr->appleY))
   {
-    score += fr->newApple(sizeOfSquare, wdw->getRenderer(), size, sk->posX, sk->posY);
-    getScore(score);
+    score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);
   }
-  wdw->draw_number(score, 10, width+10);
+  wdw->draw_number(score, 10, WIDTH+10);
 
-  if (sk->collision(size)) 
+  if (sk->collision(GRID_SIZE)) 
   { 
     return true;
   }

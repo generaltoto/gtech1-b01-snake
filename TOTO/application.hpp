@@ -2,18 +2,22 @@
 
 #include <SDL2/SDL.h>
 
+#define WIDTH 900
+#define GRID_SIZE 20
+
 
 class application 
 {
 private:
 
   int score;
+  int sizeOfSquare = floor(WIDTH / GRID_SIZE);
 
 public: 
 
-  void initGame(int width, int size);
+  void initGame(void);
 
-  bool runGAme(int sizeOfSquare, int width, int size, bool done);
+  bool runGAme(bool done);
 
   int getScore(int score);
 
