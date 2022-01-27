@@ -1,0 +1,1 @@
+g++ main.cpp application.cpp mainsSDLWindow.cpp snake.cpp fruit.cpp -l SDL2 -o main && ./main

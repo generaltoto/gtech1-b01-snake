@@ -2,8 +2,8 @@
 
 #include <SDL2/SDL.h>
 
-#define WIDTH 900
-#define GRID_SIZE 20
+#define WIDTH 1000
+#define GRID_SIZE 35
 
 
 class application 
