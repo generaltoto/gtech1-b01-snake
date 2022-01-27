@@ -40,11 +40,11 @@ void HSnake::drawHead(int sizeOfSquare, SDL_Renderer *renderer) {
   SDL_RenderFillRect(renderer, &rect);
 }
 
-bool HSnake::collision(int rows) {
+bool HSnake::collision(int rows, int score) {
   if (posX <0 || posX >= rows || posY < 0 || posY >= rows){ 
     return true; 
-  } 
-  return false;
+  }
+  return next->collision(posX, posY);
 }
 
 bool HSnake::isOnApple(int appleX, int appleY) {

@@ -17,5 +17,7 @@ public:
   
   void follow(int exposX, int exposY, int eat, int sizeOfSquare, SDL_Renderer *renderer);
 
+  bool collision(int hposX, int hposY);
+
   void draw(int sizeOfSquare, SDL_Renderer *renderer);
 };

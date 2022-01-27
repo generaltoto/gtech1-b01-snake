@@ -48,7 +48,7 @@ int main (void) {
     s->hfollow(&exposX, &exposY, eat, sizeOfSquare, wdw->getRenderer());
 
     wdw->draw_number(score, 10, WIDTH+10);
-    done = sk->collision(GRID_SIZE);                                      //checking for collisions
+    done = sk->collision(GRID_SIZE, score);                                      //checking for collisions
 
     SDL_SetRenderDrawColor(wdw->getRenderer(), 0, 0, 0, 255);
 
