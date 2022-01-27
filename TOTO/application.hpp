@@ -5,9 +5,17 @@
 
 class application 
 {
+private:
+
+  int score;
+
 public: 
 
-  void initGame(int width, int size, int score);
+  void initGame(int width, int size);
 
-  bool runGAme(int sizeOfSquare, int width, int size, int score, bool done);
+  bool runGAme(int sizeOfSquare, int width, int size, bool done);
+
+  int getScore(int score);
+
+  void deleteObject(void);
 };

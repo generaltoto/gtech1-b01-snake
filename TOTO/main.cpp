@@ -10,15 +10,15 @@
 
 bool done = false;
 int sizeOfSquare = floor(WIDTH / GRID_SIZE);
-int score = 0;
 
 int main (void)
 {
   application a;
-  a.initGame(WIDTH, GRID_SIZE, score);
+  a.initGame(WIDTH, GRID_SIZE);
   while (!done)
   {
-    done = a.runGAme(sizeOfSquare, WIDTH, GRID_SIZE, score, done);
+    done = a.runGAme(sizeOfSquare, WIDTH, GRID_SIZE, done);
   }
+  a.deleteObject();
   return 0;
 }
