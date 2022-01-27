@@ -17,6 +17,7 @@ static const char* nine  = "xxxx xxxx  xxxx";
 static const char** digits[] = { &zero, &one, &two, &three, &four, &five, &six, &seven, &eight, &nine };
 
 
+
 int MainSDLWindow::init(int width, int score) //réupération de width avec define dans =main.cpp=
 {
   SDL_Init(SDL_INIT_VIDEO);
@@ -56,6 +57,9 @@ void MainSDLWindow::drawWindow(int sizeOfSquare, int width, int size) //recupér
   }  
 }
 
+
+
+
 void MainSDLWindow::draw_digit(int digit, int posX, int posY)
 {
 	SDL_Rect rect = { 0, 0, 10, 10 };
@@ -78,21 +82,21 @@ void MainSDLWindow::draw_digit(int digit, int posX, int posY)
 	}
 }
 
+
+
+
+
 void MainSDLWindow::draw_number( int number, int posX, int posY )
 {
 	// Cannot display more than two digits.
 	if ( number >= 100 )
 		return;
-
-	// Two digits.
-	if ( number >= 10 )
+	if ( number >= 10 ) // Two digits.
 	{
 		draw_digit( number % 10, posX + 40, posY );
 		draw_digit( number / 10, posX, posY );
 	}
-
-	// One digit.
-	else
+	else // One digit.
 	{
 		draw_digit( number, posX, posY );
 	}
