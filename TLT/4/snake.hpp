@@ -11,7 +11,7 @@ public:
 
   int posX = 10, posY = 10;
 
-  int move();
+  int move(int* exposX, int*exposY);
 
   void drawHead(int sizeOfSquare, SDL_Renderer *renderer);
 

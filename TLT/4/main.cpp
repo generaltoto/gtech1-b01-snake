@@ -21,13 +21,14 @@ int main (void) {
   HSnake *sk = new HSnake;
   Fruit *fr = new Fruit;   
   Segment *s = new Segment;
-  s->init(0, 10);                                                        //getting =fruit=         class as =fr=
+  s->init(10, 10);                                                        //getting =fruit=         class as =fr=
   Uint32 frameStart, frameTime, frameDelay = 80;                          //frame delay init, the greater the slower
 
   wdw->init(WIDTH, score);                                                //window init
   fr->initApple(GRID_SIZE, sk->posX, sk->posY);                                               //apple init
   
   while (!done) {
+    bool eat = false;
     frameStart = SDL_GetTicks();                                          //number of second since initialization
     SDL_RenderClear(wdw->getRenderer());                                  //clearing renderer
 
@@ -35,15 +36,16 @@ int main (void) {
 
     sk->drawHead(sizeOfSquare, wdw->getRenderer());                       //disp squares
     s->draw(sizeOfSquare, wdw->getRenderer());                           
-    fr->randomApple(sizeOfSquare, wdw->getRenderer());                     //random Apple position
-    
-    int exposX, exposY = sk->move();                         
-    cout << exposX << exposY << endl;
-    s->follow(exposX, exposY);                   
+    fr->randomApple(sizeOfSquare, wdw->getRenderer());                     //random Apple position                   
     
     if (sk->isOnApple(fr->appleX, fr->appleY) == true) {
       score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);   //checking eat apple, score += 1 if so
+      eat = true;
     }
+
+    int exposX, exposY;
+    sk->move(&exposX, &exposY);                         
+    s->hfollow(&exposX, &exposY, eat, sizeOfSquare, wdw->getRenderer());
 
     wdw->draw_number(score, 10, WIDTH+10);
     done = sk->collision(GRID_SIZE);                                      //checking for collisions
