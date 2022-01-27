@@ -14,13 +14,12 @@ void Segment::draw(int sizeOfSquare, SDL_Renderer *renderer) {
   SDL_RenderFillRect(renderer, &rect);
 }
 
-void Segment::hfollow(int* nposX, int* nposY, bool eat, int sizeOfSquare, SDL_Renderer *renderer){
+void Segment::hfollow(int* nposX, int* nposY, int eat, int sizeOfSquare, SDL_Renderer *renderer){
   int exposX = posX;
   int exposY = posY;
   posX = *nposX;
   posY = *nposY;
   if(this->next == NULL){
-    cout << "j'uis le 2ème en théorie" <<endl;
     Segment *s = new Segment;
     this->next = s;
     s->init(exposX, exposY);
@@ -29,20 +28,17 @@ void Segment::hfollow(int* nposX, int* nposY, bool eat, int sizeOfSquare, SDL_Re
   }
 }
 
-void Segment::follow(int nposX, int nposY, bool eat, int sizeOfSquare, SDL_Renderer *renderer){
+void Segment::follow(int nposX, int nposY, int eat, int sizeOfSquare, SDL_Renderer *renderer){
   int exposX = posX;
   int exposY = posY;
   posX = nposX;
   posY = nposY;
   this->draw(sizeOfSquare, renderer);
-  cout << this->next << eat << endl;
-  if (this->next == NULL && eat){
-    cout << "g mangé donc je grandi" << endl;
+  if (next == NULL && eat){
     Segment *s = new Segment;
     this->next = s;
     s->init(exposX, exposY);  
   }else if(this->next !=NULL) {
-    eat = false;
     this->next->follow(exposX, exposY, eat, sizeOfSquare, renderer);
   }
 }

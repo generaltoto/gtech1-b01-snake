@@ -12,10 +12,6 @@ int main (void)
   {
     done = a.runGAme(done);
   }
-<<<<<<< HEAD
-  delete sk, fr, wdw;
-=======
   a.deleteObject();
->>>>>>> c9df717181aa003104691ddc3275b6ee268ddc42
   return 0;
 }

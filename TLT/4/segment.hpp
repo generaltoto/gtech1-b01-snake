@@ -13,9 +13,9 @@ public:
 
   void init(int nposX, int nposY);
 
-  void hfollow(int* exposX, int*exposY, bool eat, int sizeOfSquare, SDL_Renderer *renderer);
+  void hfollow(int* exposX, int*exposY, int eat, int sizeOfSquare, SDL_Renderer *renderer);
   
-  void follow(int exposX, int exposY, bool eat, int sizeOfSquare, SDL_Renderer *renderer);
+  void follow(int exposX, int exposY, int eat, int sizeOfSquare, SDL_Renderer *renderer);
 
   void draw(int sizeOfSquare, SDL_Renderer *renderer);
 };

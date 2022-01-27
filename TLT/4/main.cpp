@@ -28,7 +28,7 @@ int main (void) {
   fr->initApple(GRID_SIZE, sk->posX, sk->posY);                                               //apple init
   
   while (!done) {
-    bool eat = false;
+    int eat = 0;
     frameStart = SDL_GetTicks();                                          //number of second since initialization
     SDL_RenderClear(wdw->getRenderer());                                  //clearing renderer
 
@@ -40,7 +40,7 @@ int main (void) {
     
     if (sk->isOnApple(fr->appleX, fr->appleY) == true) {
       score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);   //checking eat apple, score += 1 if so
-      eat = true;
+      eat = 1;
     }
 
     int exposX, exposY;
