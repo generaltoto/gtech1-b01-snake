@@ -33,13 +33,13 @@ int main (void) {
 
     wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);                      //disp grid
 
-    sk->drawHead(sizeOfSquare, wdw->getRenderer());
-    s->draw(sizeOfSquare, wdw->getRenderer());                           //disp square
-    fr->randomApple(sizeOfSquare, wdw->getRenderer());
+    sk->drawHead(sizeOfSquare, wdw->getRenderer());                       //disp squares
+    s->draw(sizeOfSquare, wdw->getRenderer());                           
+    fr->randomApple(sizeOfSquare, wdw->getRenderer());                     //random Apple position
     
-    int exposX, exposY = sk->move();                         //update window
+    int exposX, exposY = sk->move();                         
     cout << exposX << exposY << endl;
-    s->follow(exposX, exposY);                    //random Apple position
+    s->follow(exposX, exposY);                   
     
     if (sk->isOnApple(fr->appleX, fr->appleY) == true) {
       score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);   //checking eat apple, score += 1 if so
@@ -52,8 +52,7 @@ int main (void) {
 
     SDL_RenderPresent(wdw->getRenderer());                                //disp everything on window
 
-    SDL_UpdateWindowSurface(wdw->getWindow());   
-                                                               //checking for moves
+    SDL_UpdateWindowSurface(wdw->getWindow());                            //update window
 
     frameTime = SDL_GetTicks() - frameStart;                              //framerate managing 
 		if ( frameTime < frameDelay ) {
