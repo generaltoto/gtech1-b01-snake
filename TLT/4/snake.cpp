@@ -2,6 +2,8 @@
 #include "snake.hpp"
 #include "fruit.hpp"
 
+using namespace std;
+
 int HSnake::move() {
   const Uint8 *keystate = SDL_GetKeyboardState(NULL);
 
@@ -30,7 +32,8 @@ int HSnake::move() {
 
   posX += dirX; //on augmente la position du cube dans la direction choisie
   posY += dirY;
-
+  
+  cout << exposX << exposY << endl;
   return exposX, exposY;
 }
 

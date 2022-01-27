@@ -11,8 +11,6 @@ public:
 
   int posX = 10, posY = 10;
 
-  Segment * next = new Segment;
-
   int move();
 
   void drawHead(int sizeOfSquare, SDL_Renderer *renderer);
