@@ -7,9 +7,11 @@ private:
 
 public:
 
-  int dirX = 0, dirY = 0;
+  int dirX = 1, dirY = 0;
 
   int posX = 10, posY = 10;
+
+  Segment * next = NULL;
 
   int move(int* exposX, int*exposY);
 
@@ -17,6 +19,6 @@ public:
 
   bool isOnApple(int appleX, int appleY);
 
-  bool collision(int rows);
+  bool hcollision(int rows);
 
 };

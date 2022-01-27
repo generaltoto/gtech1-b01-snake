@@ -44,9 +44,11 @@ void Segment::follow(int nposX, int nposY, int eat, int sizeOfSquare, SDL_Render
 }
 
 bool Segment::collision(int hposX, int hposY){
-  if(hposX == posX && hposY == posY){
+  if(hposX == this->posX && hposY == this->posY){
     return true;
   }else if(next != NULL){
     return next->collision(hposX, hposY);  
+  }else{
+    return false;
   }
 }

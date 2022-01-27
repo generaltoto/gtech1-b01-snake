@@ -21,7 +21,8 @@ int main (void) {
   HSnake *sk = new HSnake;
   Fruit *fr = new Fruit;   
   Segment *s = new Segment;
-  s->init(10, 10);                                                        //getting =fruit=         class as =fr=
+  s->init(9, 10); 
+  sk->next = s;                                                       //getting =fruit=         class as =fr=
   Uint32 frameStart, frameTime, frameDelay = 80;                          //frame delay init, the greater the slower
 
   wdw->init(WIDTH, score);                                                //window init
@@ -48,7 +49,7 @@ int main (void) {
     s->hfollow(&exposX, &exposY, eat, sizeOfSquare, wdw->getRenderer());
 
     wdw->draw_number(score, 10, WIDTH+10);
-    done = sk->collision(GRID_SIZE, score);                                      //checking for collisions
+    done = sk->hcollision(GRID_SIZE);                                      //checking for collisions
 
     SDL_SetRenderDrawColor(wdw->getRenderer(), 0, 0, 0, 255);
 

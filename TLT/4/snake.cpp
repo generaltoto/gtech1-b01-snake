@@ -35,16 +35,16 @@ int HSnake::move(int* exposX, int*exposY) {
 }
 
 void HSnake::drawHead(int sizeOfSquare, SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
+  SDL_SetRenderDrawColor(renderer, 190, 0, 0, SDL_ALPHA_OPAQUE);
   SDL_Rect rect = { posX * sizeOfSquare, posY * sizeOfSquare, sizeOfSquare, sizeOfSquare };
   SDL_RenderFillRect(renderer, &rect);
 }
 
-bool HSnake::collision(int rows, int score) {
+bool HSnake::hcollision(int rows) {
   if (posX <0 || posX >= rows || posY < 0 || posY >= rows){ 
     return true; 
   }
-  return next->collision(posX, posY);
+  return this->next->collision(posX, posY);
 }
 
 bool HSnake::isOnApple(int appleX, int appleY) {
