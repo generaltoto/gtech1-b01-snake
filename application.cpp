@@ -45,7 +45,7 @@ bool Application::runGame(bool done){
 
   int exposX, exposY;
   sk->move(&exposX, &exposY);                         
-  s->hfollow(&exposX, &exposY, eat, sizeOfSquare, wdw->getRenderer());
+  s->hfollow(exposX, exposY, eat, sizeOfSquare, wdw->getRenderer());
 
   wdw->draw_number(score, 10, WIDTH+10);
   if(sk->hcollision(GRID_SIZE)){

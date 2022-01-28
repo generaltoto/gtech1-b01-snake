@@ -14,7 +14,7 @@ void Segment::draw(int sizeOfSquare, SDL_Renderer *renderer) {
   SDL_RenderFillRect(renderer, &rect);
 }
 
-void Segment::hfollow(int* nposX, int* nposY, bool eat, int sizeOfSquare, SDL_Renderer *renderer){
+void Segment::hfollow(int nposX, int nposY, bool eat, int sizeOfSquare, SDL_Renderer *renderer){
   int exposX = posX;
   int exposY = posY;
   posX = *nposX;
