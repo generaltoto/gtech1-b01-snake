@@ -50,7 +50,7 @@ bool HSnake::hcollision(int rows) {
 bool HSnake::isOnApple(int appleX, int appleY) {
   if (appleX == posX && appleY == posY) { 
     return true; 
-  } else { 
+  }else { 
     return false; 
   }
 }

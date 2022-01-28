@@ -12,8 +12,6 @@ public:
   Segment(){}
 
   void init(int nposX, int nposY);
-
-  void hfollow(int* exposX, int*exposY, bool eat, int sizeOfSquare, SDL_Renderer *renderer);
   
   void follow(int exposX, int exposY, bool eat, int sizeOfSquare, SDL_Renderer *renderer);
 

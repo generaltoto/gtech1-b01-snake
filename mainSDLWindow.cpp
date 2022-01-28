@@ -17,10 +17,9 @@ static const char* nine  = "xxxx xxxx  xxxx";
 static const char** digits[] = { &zero, &one, &two, &three, &four, &five, &six, &seven, &eight, &nine };
 
 
-int MainSDLWindow::init(int width, int score) { //récupération de width avec define dans =main.cpp=
+int MainSDLWindow::init(int width, int score) {
 
   SDL_Init(SDL_INIT_VIDEO);
-  //TTF_Init();
 
   std::string displayedText = std::__cxx11::to_string(score);
 
@@ -34,17 +33,16 @@ int MainSDLWindow::init(int width, int score) { //récupération de width avec d
   return EXIT_SUCCESS;
 }
 
-void MainSDLWindow::drawWindow(int sizeOfSquare, int width, int size) { //recupération arguments dans =main.cpp=
+void MainSDLWindow::drawWindow(int sizeOfSquare, int width, int size) {
   SDL_SetRenderDrawColor(renderer, 0, 0, 0, SDL_ALPHA_OPAQUE);
-  SDL_Rect rect = { 0, 0, width, width }; //define WIDTH dans =main.cpp=
+  SDL_Rect rect = { 0, 0, width, width };
   SDL_RenderFillRect(renderer, &rect);
 
   SDL_SetRenderDrawColor(renderer, 69, 69, 69, SDL_ALPHA_OPAQUE);
 
-  //drawing grid
   int x = 0, y = 0;
 
-  for (int n; n<size; n++) { // n takes values from 0 to GRID_SIZE 
+  for (int n; n<size; n++) {
     x += sizeOfSquare;
     y += sizeOfSquare;
 
@@ -57,7 +55,6 @@ void MainSDLWindow::draw_digit(int digit, int posX, int posY) {
 	SDL_Rect rect = { 0, 0, 10, 10 };
 	SDL_SetRenderDrawColor( renderer, 255, 255, 255, SDL_ALPHA_OPAQUE );
 
-	/// Loop if overflow to prevent wrong memory access.
 	digit = digit % 10;
 
 	for ( int y = 0; y < 5; ++y ) {
@@ -72,16 +69,14 @@ void MainSDLWindow::draw_digit(int digit, int posX, int posY) {
 }
 
 void MainSDLWindow::draw_number( int number, int posX, int posY ) {
-	// Cannot display more than two digits.
 	if ( number >= 100 ){ 
     return;
   }
 
-	// Two digits.
 	if ( number >= 10 ) {
 		draw_digit( number % 10, posX + 40, posY );
 		draw_digit( number / 10, posX, posY );
-	}	else { // One digit.
+	}else {
 		draw_digit( number, posX, posY );
 	}
 }

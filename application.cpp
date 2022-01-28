@@ -16,54 +16,51 @@ void Application::initGame(void) {
   score = 0;
   srand(time(0));
 
-  wdw->init(WIDTH, score);                                                //window init
-  fr->initApple(GRID_SIZE, sk->posX, sk->posY);
-  s->init(4, 5); 
+  wdw->init(WIDTH, score);
+  fr->initApple(GRID_SIZE, sk->posX, sk->posY); 
   sk->next = s;
 }
 
-void Application::deleteObject(void)
-{
+void Application::deleteObject(void) {
   delete wdw, sk, fr, s;
 }
 
-bool Application::runGame(bool done){
+bool Application::runGame(bool done) {
   bool eat = false;
-  frameStart = SDL_GetTicks();                                          //number of second since initialization
-  SDL_RenderClear(wdw->getRenderer());                                  //clearing renderer
+  frameStart = SDL_GetTicks();
+  SDL_RenderClear(wdw->getRenderer());
 
-  wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);                      //disp grid
+  wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);
 
-  sk->drawHead(sizeOfSquare, wdw->getRenderer());                       //disp squares
-  s->draw(sizeOfSquare, wdw->getRenderer());                           
-  fr->randomApple(sizeOfSquare, wdw->getRenderer());                     //random Apple position                   
+  sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
+  fr->randomApple(sizeOfSquare, wdw->getRenderer());             
     
   if (sk->isOnApple(fr->appleX, fr->appleY)) {
-    score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);   //checking eat apple, score += 1 if so
+    score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);
     eat = true;
   }
 
   int exposX, exposY;
   sk->move(&exposX, &exposY);                         
-  s->hfollow(exposX, exposY, eat, sizeOfSquare, wdw->getRenderer());
+  s->follow(exposX, exposY, eat, sizeOfSquare, wdw->getRenderer());
 
   wdw->draw_number(score, 10, WIDTH+10);
-  if(sk->hcollision(GRID_SIZE)){
+  if(sk->hcollision(GRID_SIZE)) {
     return true;
-  }                                      //checking for collisions
+  }
 
   SDL_SetRenderDrawColor(wdw->getRenderer(), 0, 0, 0, 255);
 
-  SDL_RenderPresent(wdw->getRenderer());                                //disp everything on window
+  SDL_RenderPresent(wdw->getRenderer());
 
-  SDL_UpdateWindowSurface(wdw->getWindow());                            //update window
+  SDL_UpdateWindowSurface(wdw->getWindow());
 
-  frameTime = SDL_GetTicks() - frameStart;                              //framerate managing 
+  frameTime = SDL_GetTicks() - frameStart;
   if ( frameTime < frameDelay ) {
 		SDL_Delay( frameDelay - frameTime );
 	}
     
-  SDL_Event event;                                                      //checking for quit event
+  SDL_Event event;
   while (SDL_PollEvent(&event)) {
     if (event.type == SDL_QUIT) {
       return true;

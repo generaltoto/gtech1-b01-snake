@@ -7,7 +7,7 @@ bool done = false;
 int main (void) {
   Application a;
   a.initGame();
-  while (!done){
+  while (!done) {
     done = a.runGame(done);
   }
   a.deleteObject();
