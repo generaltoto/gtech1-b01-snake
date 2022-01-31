@@ -15,6 +15,8 @@ public:
 
   void move(int* exposX, int*exposY);
 
+  void keyEnter();
+
   void drawHead(int sizeOfSquare, SDL_Renderer *renderer);
 
   bool isOnApple(int appleX, int appleY);
