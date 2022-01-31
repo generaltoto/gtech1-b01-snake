@@ -10,7 +10,7 @@ MainSDLWindow *wdw = new MainSDLWindow;
 HSnake *sk = new HSnake;
 Fruit *fr = new Fruit;   
 Segment *s = new Segment;
-Uint32 frameStart, frameTime, frameDelay = 80; 
+Uint32 frameStart, frameTime, frameDelay = 70, iter = 0; 
 
 void Application::initGame(void) {
   score = 0;
@@ -27,22 +27,27 @@ void Application::deleteObject(void) {
 
 bool Application::runGame(bool done) {
   bool eat = false;
-  frameStart = SDL_GetTicks();
+  int exposX, exposY;
   SDL_RenderClear(wdw->getRenderer());
 
   wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);
 
-  sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
-  fr->randomApple(sizeOfSquare, wdw->getRenderer());             
-    
   if (sk->isOnApple(fr->appleX, fr->appleY)) {
     score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);
     eat = true;
   }
 
-  int exposX, exposY;
-  sk->move(&exposX, &exposY);                         
+  do {
+    frameStart = SDL_GetTicks();
+    sk->keyEnter();
+    iter += 1;                      
+  } while (iter % frameDelay == 0);
+
+  iter = 0;
+  sk->move(&exposX, &exposY);
   s->follow(exposX, exposY, eat, sizeOfSquare, wdw->getRenderer());
+  sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
+  fr->randomApple(sizeOfSquare, wdw->getRenderer());             
 
   wdw->draw_number(score, 10, WIDTH+10);
   if(sk->hcollision(GRID_SIZE)) {
