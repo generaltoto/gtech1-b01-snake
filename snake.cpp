@@ -4,7 +4,7 @@
 
 using namespace std;
 
-int HSnake::move(int* exposX, int*exposY) {
+void HSnake::move(int* exposX, int*exposY) {
   const Uint8 *keystate = SDL_GetKeyboardState(NULL);
 
   if (keystate[SDL_SCANCODE_W]) {
@@ -30,7 +30,7 @@ int HSnake::move(int* exposX, int*exposY) {
   *exposX = posX;
   *exposY = posY;
 
-  posX += dirX; //on augmente la position du cube dans la direction choisie
+  posX += dirX; 
   posY += dirY;
 }
 
@@ -41,7 +41,7 @@ void HSnake::drawHead(int sizeOfSquare, SDL_Renderer *renderer) {
 }
 
 bool HSnake::hcollision(int rows) {
-  if (posX <0 || posX >= rows || posY < 0 || posY >= rows){ 
+  if (posX <0 || posX >= rows+1 || posY < 0 || posY >= rows+1){ 
     return true; 
   }
   return this->next->collision(posX, posY);
