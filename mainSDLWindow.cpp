@@ -40,15 +40,25 @@ void MainSDLWindow::drawWindow(int sizeOfSquare, int width, int size) {
 
   SDL_SetRenderDrawColor(renderer, 69, 69, 69, SDL_ALPHA_OPAQUE);
 
-  int x = 0, y = 0;
 
-  for (int n; n<size; n++) {
-    x += sizeOfSquare;
-    y += sizeOfSquare;
+  // vert clair : 170, 215, 81
+  // vert foncé : 162, 209, 73
 
-    SDL_RenderDrawLine(renderer, 0, y, width, y);
-    SDL_RenderDrawLine(renderer, x, 0, x, width);
-  }  
+  for (int i=0; i<size; i++)
+  {
+    for (int j=0; j<size; j++)
+    {
+      if ((i+j)%2 == 0)
+      {
+        SDL_SetRenderDrawColor(renderer, 170, 215, 81, SDL_ALPHA_OPAQUE);
+      } else 
+      {
+        SDL_SetRenderDrawColor(renderer, 162, 209, 73, SDL_ALPHA_OPAQUE);
+      }
+      SDL_Rect gridRect = { i * sizeOfSquare, j * sizeOfSquare, sizeOfSquare, sizeOfSquare };
+      SDL_RenderFillRect(renderer, &gridRect);
+    }
+  }
 }
 
 void MainSDLWindow::draw_digit(int digit, int posX, int posY) {

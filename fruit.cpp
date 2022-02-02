@@ -8,7 +8,7 @@ void Fruit::initApple(int rows, int posX, int posY) {
 }
 
 void Fruit::randomApple (int sizeOfSquare, SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, 0, 255, 0, SDL_ALPHA_OPAQUE);
+  SDL_SetRenderDrawColor(renderer, 231, 71, 29, SDL_ALPHA_OPAQUE);
   SDL_Rect rect = { appleX * sizeOfSquare, appleY * sizeOfSquare, sizeOfSquare, sizeOfSquare };
   SDL_RenderFillRect(renderer, &rect); 
 }
