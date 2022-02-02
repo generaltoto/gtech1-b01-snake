@@ -17,23 +17,23 @@ void HSnake::keyEnter(){
   const Uint8 *keystate = SDL_GetKeyboardState(NULL);
 
   if (keystate[SDL_SCANCODE_W]) {
-    this->dirX = 0;
-    this->dirY = -1; 
+    dirX = 0;
+    dirY = -1; 
   }
 
   if (keystate[SDL_SCANCODE_S]) {
-    this->dirX = 0;
-    this->dirY = 1; 
+    dirX = 0;
+    dirY = 1; 
   }
 
   if (keystate[SDL_SCANCODE_A]) {
-    this->dirX = -1;
-    this->dirY = 0; 
+    dirX = -1;
+    dirY = 0; 
   }
 
   if (keystate[SDL_SCANCODE_D]) {
-    this->dirX = 1;
-    this->dirY = 0; 
+    dirX = 1;
+    dirY = 0; 
   }
 }
 

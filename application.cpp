@@ -40,7 +40,7 @@ bool Application::runGame(bool done) {
   do {
     frameStart = SDL_GetTicks();
     sk->keyEnter();
-    iter += 1;                      
+    iter ++;                      
   } while (iter % frameDelay == 0);
 
   iter = 0;
