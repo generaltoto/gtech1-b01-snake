@@ -36,12 +36,18 @@ void snake::drawHead(int sizeOfSquare, SDL_Renderer *renderer)
 
 bool snake::collision(int rows)
 {
-  if (posX <0 || posX >= rows || posY < 0 || posY >= rows){ return true; } 
+  if (posX <0 || posX >= rows || posY < 0 || posY >= rows)
+  {
+    return true;
+  } 
   return false;
 }
 
 bool snake::isOnApple(int appleX, int appleY)
 {
-  if (appleX == posX && appleY == posY) { return true; }
-  else { return false; }
+  if (appleX == posX && appleY == posY)
+  {
+    return true;
+  }
+  return false;
 }

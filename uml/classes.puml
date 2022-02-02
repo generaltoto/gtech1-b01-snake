@@ -1,0 +1,96 @@
+@startuml
+
+
+
+
+
+/' Objects '/
+
+class Application {
+	+runGame(bool done) : bool
+	+getScore(int score) : int
+	-score : int
+	-sizeOfSquare : int
+	+deleteObject() : void
+	+initGame() : void
+}
+
+
+class Fruit {
+	+isOnApple() : bool
+	+appleX : int
+	+appleY : int
+	+newApple(int sizeOfSquare, SDL_Renderer* renderer, int rows, int posX, int posY) : int
+	+initApple(int rows, int posX, int posY) : void
+	+randomApple(int sizeOfSquare, SDL_Renderer* renderer) : void
+}
+
+
+class HSnake {
+	+next : Segment*
+	+hcollision(int rows) : bool
+	+isOnApple(int appleX, int appleY) : bool
+	+dirX : int
+	+dirX : int
+	+dirX : int
+	+posX : int
+	+posX : int
+	+posX : int
+	+drawHead(int sizeOfSquare, SDL_Renderer* renderer) : void
+	+move(int* exposX, int* exposY) : void
+}
+
+
+class MainSDLWindow {
+	+MainSDLWindow()
+	+~MainSDLWindow()
+	+getRenderer() : SDL_Renderer*
+	-renderer : SDL_Renderer*
+	+getWindow() : SDL_Window*
+	-window : SDL_Window*
+	+init(int width, int score) : int
+	+drawWindow(int SizeOfSquare, int width, int size) : void
+	+draw_digit(int digit, int posX, int posY) : void
+	+draw_number(int number, int posX, int posY) : void
+}
+
+
+class Segment {
+	+Segment()
+	+next : Segment*
+	+collision(int hposX, int hposY) : bool
+	+posX : int
+	+posX : int
+	+posX : int
+	+draw(int sizeOfSquare, SDL_Renderer* renderer) : void
+	+follow(int exposX, int exposY, bool eat, int sizeOfSquare, SDL_Renderer* renderer) : void
+	+init(int nposX, int nposY) : void
+}
+
+
+
+
+
+/' Inheritance relationships '/
+
+
+
+
+/' Aggregation relationships '/
+
+.HSnake o-- .Segment
+
+
+.Segment o-- .Segment
+
+
+
+
+
+
+/' Nested objects '/
+
+
+
+@enduml
+

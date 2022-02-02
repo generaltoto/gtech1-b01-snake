@@ -25,7 +25,7 @@ int MainSDLWindow::init(int width, int score) //réupération de width avec defi
 
   std::string displayedText = std::__cxx11::to_string(score);
 
-  window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width + (width/10), SDL_WINDOW_MINIMIZED);
+  window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width + (width/10), SDL_WINDOW_SHOWN);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
   if ( !renderer || !window )

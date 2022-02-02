@@ -8,7 +8,7 @@
 MainSDLWindow *wdw = new MainSDLWindow;
 snake *sk = new snake;
 fruit *fr = new fruit;
-Uint32 frameStart, frameTime, frameDelay = 95;
+Uint32 frameStart, frameTime, frameDelay = 70;
 
 void application::initGame(void)
 {
@@ -30,11 +30,13 @@ void application::deleteObject(void)
 bool application::runGAme(bool done)
 {
   frameStart = SDL_GetTicks();
+
   SDL_RenderClear(wdw->getRenderer());
 
   wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);
 
   sk->drawHead(sizeOfSquare, wdw->getRenderer());
+
   fr->randomApple(sizeOfSquare, wdw->getRenderer());
   
   if (sk->isOnApple(fr->appleX, fr->appleY))
@@ -53,6 +55,7 @@ bool application::runGAme(bool done)
   SDL_RenderPresent(wdw->getRenderer());
 
   SDL_UpdateWindowSurface(wdw->getWindow());
+
   sk->move();
 
   frameTime = SDL_GetTicks() - frameStart;

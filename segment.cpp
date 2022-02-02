@@ -8,7 +8,7 @@ void Segment::init(int nposX, int nposY) {
 }
 
 void Segment::draw(int sizeOfSquare, SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, 255, 0, 0, SDL_ALPHA_OPAQUE);
+  SDL_SetRenderDrawColor(renderer, 70, 115, 232, SDL_ALPHA_OPAQUE);
   SDL_Rect rect = { this->posX * sizeOfSquare, this->posY * sizeOfSquare, sizeOfSquare, sizeOfSquare };
   SDL_RenderFillRect(renderer, &rect);
 }
