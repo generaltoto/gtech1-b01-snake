@@ -22,4 +22,8 @@ public:
   int getScore(int score);
 
   void deleteObject(void);
+
+  void deleteWindow(void);
+
+  bool replay();
 };

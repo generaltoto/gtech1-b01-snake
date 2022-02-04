@@ -44,7 +44,7 @@ void HSnake::drawHead(int sizeOfSquare, SDL_Renderer *renderer) {
 }
 
 bool HSnake::hcollision(int rows) {
-  if (posX <0 || posX >= rows+1 || posY < 0 || posY >= rows+1){ 
+  if (posX <0 || posX >= rows || posY < 0 || posY >= rows){ 
     return true; 
   }
   return this->next->collision(posX, posY);

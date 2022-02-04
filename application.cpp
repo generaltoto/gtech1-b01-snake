@@ -5,6 +5,8 @@
 #include "snake.hpp"
 #include "fruit.hpp"
 #include "segment.hpp"
+
+using namespace std;
   
 MainSDLWindow *wdw = new MainSDLWindow;
 HSnake *sk = new HSnake;
@@ -22,7 +24,11 @@ void Application::initGame(void) {
 }
 
 void Application::deleteObject(void) {
-  delete wdw, sk, fr, s;
+  delete sk, fr, s;
+}
+
+void Application::deleteWindow(void) {
+  delete wdw;
 }
 
 bool Application::runGame(bool done) {
@@ -72,4 +78,26 @@ bool Application::runGame(bool done) {
     }
   }
   return false;
+}
+
+bool Application::replay(){
+  const Uint8 *keystate = SDL_GetKeyboardState(NULL);
+
+  SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
+  SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
+  SDL_RenderPresent(wdw->getRenderer());
+  cout << "j'uis arrivé là" << endl;
+  return true;
+  /*while(r == 0){
+    cout << "boucle" << endl;
+    if (keystate[SDL_SCANCODE_RETURN]){
+      cout << "true" << endl;
+      r = 1;
+      return true;
+    }else if (keystate[SDL_SCANCODE_ESCAPE]){
+      cout << "false" << endl;
+      r = 1;
+      return false;
+    }
+  }*/
 }
