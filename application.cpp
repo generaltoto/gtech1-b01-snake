@@ -34,7 +34,7 @@ void Application::deleteWindow() {
   delete wdw;
 }
 
-bool Application::runGame(bool done) {
+bool Application::runGame(bool done, bool *play) {
   bool eat = false;
   int exposX, exposY;
   SDL_RenderClear(wdw->getRenderer());
@@ -48,12 +48,17 @@ bool Application::runGame(bool done) {
 
   do {
     frameStart = SDL_GetTicks();
-    sk->keyEnter();
+    sk->keyEnter(play);
     iter ++;                      
   } while (iter % frameDelay == 0);
 
   iter = 0;
-  sk->move(eat, sizeOfSquare, wdw->getRenderer());
+  if (play){
+    sk->move(eat, sizeOfSquare, wdw->getRenderer());
+  } else {
+  SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
+  SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
+  }
   sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
   fr->randomApple(sizeOfSquare, wdw->getRenderer());             
 
@@ -90,7 +95,8 @@ bool Application::replay(){
   SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
   SDL_RenderPresent(wdw->getRenderer());
   cout << "j'uis arrivé là" << endl;
-  while(r == 0){
+  return true;
+  /*while(r == 0){
     cout << "boucle" << endl;
     if (keystate[SDL_SCANCODE_RETURN]){
       cout << "true" << endl;
@@ -101,5 +107,5 @@ bool Application::replay(){
       r = 1;
       return false;
     }
-  }
+  }*/
 }

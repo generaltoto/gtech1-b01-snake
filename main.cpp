@@ -5,7 +5,7 @@
 using namespace std;
 
 bool done = false;
-bool replay = true;
+bool play = true;
 
 int main (void) {
   Application a;
@@ -15,11 +15,11 @@ int main (void) {
     cout << "start" << endl;
     a.initGame();
     while (!done) {
-      done = a.runGame(done);
+      done = a.runGame(done, &play);
     }
-    replay = a.replay();
+    //play = a.replay();
     a.deleteObject();
-   } while (replay);
+   } while (play);
    a.deleteWindow();
   return 0;
 }

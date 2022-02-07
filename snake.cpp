@@ -15,7 +15,7 @@ void HSnake::move(bool eat, int sizeOfSquare, SDL_Renderer *renderer) {
   next->follow(exposX, exposY, eat, sizeOfSquare, renderer);
 }
 
-void HSnake::keyEnter(){
+void HSnake::keyEnter(bool *play){
   const Uint8 *keystate = SDL_GetKeyboardState(NULL);
 
   if (keystate[SDL_SCANCODE_W]) {
@@ -36,6 +36,9 @@ void HSnake::keyEnter(){
   if (keystate[SDL_SCANCODE_D]) {
     dirX = 1;
     dirY = 0; 
+  }
+  if (keystate[SDL_SCANCODE_SPACE]){
+    *play = !play;
   }
 }
 
