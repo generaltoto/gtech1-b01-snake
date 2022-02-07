@@ -10,7 +10,7 @@ MainSDLWindow *wdw = new MainSDLWindow;
 HSnake *sk = new HSnake;
 Fruit *fr = new Fruit;   
 Segment *s = new Segment;
-Uint32 frameStart, frameTime, frameDelay = 70, iter = 0; 
+Uint32 frameStart, frameTime, frameDelay = 90, iter = 0; 
 
 void Application::initGame(void) {
   score = 0;

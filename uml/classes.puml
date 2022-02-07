@@ -37,6 +37,7 @@ class HSnake {
 	+posX : int
 	+posX : int
 	+drawHead(int sizeOfSquare, SDL_Renderer* renderer) : void
+	+keyEnter() : void
 	+move(int* exposX, int* exposY) : void
 }
 

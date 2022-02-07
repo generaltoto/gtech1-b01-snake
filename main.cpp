@@ -3,13 +3,18 @@
 #include "application.hpp"
 
 bool done = false;
+bool replay = true;
 
 int main (void) {
-  Application a;
-  a.initGame();
-  while (!done) {
-    done = a.runGame(done);
-  }
-  a.deleteObject();
+  do {
+    Application a;
+    a.initGame();
+    while (!done) {
+      done = a.runGame(done);
+    }
+    a.deleteObject();
+
+  } while (replay);
+  
   return 0;
 }

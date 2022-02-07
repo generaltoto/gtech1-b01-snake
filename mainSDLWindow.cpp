@@ -23,7 +23,7 @@ int MainSDLWindow::init(int width, int score) {
 
   std::string displayedText = std::__cxx11::to_string(score);
 
-  window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width + (width/10), SDL_WINDOW_SHOWN);
+  window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width + (width/10), SDL_WINDOW_ALWAYS_ON_TOP);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
   if ( !renderer || !window ) {
@@ -82,7 +82,6 @@ void MainSDLWindow::draw_number( int number, int posX, int posY ) {
 	if ( number >= 100 ){ 
     return;
   }
-
 	if ( number >= 10 ) {
 		draw_digit( number % 10, posX + 40, posY );
 		draw_digit( number / 10, posX, posY );
