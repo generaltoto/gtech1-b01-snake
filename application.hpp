@@ -1,6 +1,9 @@
 #pragma once 
 
 #include <SDL2/SDL.h>
+#include "snake.hpp"
+#include "mainSDLWindow.hpp"
+#include "fruit.hpp"
 
 #define WIDTH 700
 #define GRID_SIZE 25
@@ -14,16 +17,22 @@ private:
   int sizeOfSquare = floor(WIDTH / GRID_SIZE);
 
 public: 
+    HSnake *sk;
+    Fruit *fr;   
+    Segment *s;
+    MainSDLWindow *wdw;
 
-  void initGame(void);
+  void initWindow();
+
+  void initGame();
 
   bool runGame(bool done);
 
   int getScore(int score);
 
-  void deleteObject(void);
+  void deleteObject();
 
-  void deleteWindow(void);
+  void deleteWindow();
 
   bool replay();
 };
