@@ -50,8 +50,7 @@ bool Application::runGame(bool done) {
   } while (iter % frameDelay == 0);
 
   iter = 0;
-  sk->move(&exposX, &exposY);
-  s->follow(exposX, exposY, eat, sizeOfSquare, wdw->getRenderer());
+  sk->move(eat, sizeOfSquare, wdw->getRenderer());
   sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
   fr->randomApple(sizeOfSquare, wdw->getRenderer());             
 

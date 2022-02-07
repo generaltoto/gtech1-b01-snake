@@ -4,13 +4,15 @@
 
 using namespace std;
 
-void HSnake::move(int* exposX, int*exposY) {
+void HSnake::move(bool eat, int sizeOfSquare, SDL_Renderer *renderer) {
 
-  *exposX = posX;
-  *exposY = posY;
+  int exposX = posX;
+  int exposY = posY;
 
   posX += dirX; //on augmente la position du cube dans la direction choisie
   posY += dirY;
+
+  next->follow(exposX, exposY, eat, sizeOfSquare, renderer);
 }
 
 void HSnake::keyEnter(){
