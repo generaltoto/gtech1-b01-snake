@@ -24,7 +24,7 @@ public:
   SDL_Renderer *getRenderer(){ return renderer; }
   SDL_Window *getWindow(){ return window; }
 
-  int init (int width, int score);
+  int init (int width);
 
   void drawWindow(int SizeOfSquare, int width, int size);
 

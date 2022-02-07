@@ -17,11 +17,9 @@ static const char* nine  = "xxxx xxxx  xxxx";
 static const char** digits[] = { &zero, &one, &two, &three, &four, &five, &six, &seven, &eight, &nine };
 
 
-int MainSDLWindow::init(int width, int score) {
+int MainSDLWindow::init(int width) {
 
   SDL_Init(SDL_INIT_VIDEO);
-
-  std::string displayedText = std::__cxx11::to_string(score);
 
   window = SDL_CreateWindow("SNAKE", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, width + (width/10), SDL_WINDOW_ALWAYS_ON_TOP);
   renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);

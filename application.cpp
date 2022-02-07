@@ -16,7 +16,7 @@ void Application::initGame(void) {
   score = 0;
   srand(time(0));
 
-  wdw->init(WIDTH, score);
+  wdw->init(WIDTH);
   fr->initApple(GRID_SIZE, sk->posX, sk->posY); 
   sk->next = s;
 }
