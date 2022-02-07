@@ -9,6 +9,7 @@ bool replay = true;
 
 int main (void) {
   Application a;
+  a.initWindow();
   do {
     done = false;
     cout << "start" << endl;
@@ -18,7 +19,7 @@ int main (void) {
     }
     replay = a.replay();
     a.deleteObject();
-    a.deleteWindow();
    } while (replay);
+   a.deleteWindow();
   return 0;
 }
