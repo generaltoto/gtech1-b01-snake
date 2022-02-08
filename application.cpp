@@ -12,7 +12,7 @@ Uint32 frameStart, frameTime, frameDelay = 70, iter = 0;
 
 void Application::initWindow(){
   wdw = new MainSDLWindow;
-  wdw->init(WIDTH, 0);
+  wdw->init(WIDTH);
 }
 
 void Application::initGame() {
