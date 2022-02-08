@@ -2,19 +2,24 @@
 #include <iostream>
 #include "application.hpp"
 
+using namespace std;
+
 bool done = false;
-bool replay = true;
+bool play = true;
 
 int main (void) {
+  Application a;
+  a.initWindow();
   do {
-    Application a;
+    done = false;
+    cout << "start" << endl;
     a.initGame();
     while (!done) {
-      done = a.runGame(done);
+      done = a.runGame(done, &play);
     }
+    //play = a.replay();
     a.deleteObject();
-
-  } while (replay);
-  
+   } while (play);
+   a.deleteWindow();
   return 0;
 }

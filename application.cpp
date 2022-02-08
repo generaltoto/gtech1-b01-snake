@@ -5,27 +5,36 @@
 #include "snake.hpp"
 #include "fruit.hpp"
 #include "segment.hpp"
-  
-MainSDLWindow *wdw = new MainSDLWindow;
-HSnake *sk = new HSnake;
-Fruit *fr = new Fruit;   
-Segment *s = new Segment;
-Uint32 frameStart, frameTime, frameDelay = 90, iter = 0; 
 
-void Application::initGame(void) {
-  score = 0;
+using namespace std;
+  
+Uint32 frameStart, frameTime, frameDelay = 70, iter = 0;
+
+void Application::initWindow(){
+  wdw = new MainSDLWindow;
+  wdw->init(WIDTH, 0);
+}
+
+void Application::initGame() {
   srand(time(0));
 
-  wdw->init(WIDTH);
+  sk = new HSnake;
+  fr = new Fruit;   
+  s = new Segment;
+
   fr->initApple(GRID_SIZE, sk->posX, sk->posY); 
   sk->next = s;
 }
 
-void Application::deleteObject(void) {
-  delete wdw, sk, fr, s;
+void Application::deleteObject() {
+  delete sk, fr, s;
 }
 
-bool Application::runGame(bool done) {
+void Application::deleteWindow() {
+  delete wdw;
+}
+
+bool Application::runGame(bool done, bool *play) {
   bool eat = false;
   int exposX, exposY;
   SDL_RenderClear(wdw->getRenderer());
@@ -39,13 +48,17 @@ bool Application::runGame(bool done) {
 
   do {
     frameStart = SDL_GetTicks();
-    sk->keyEnter();
-    iter += 1;                      
+    sk->keyEnter(play);
+    iter ++;                      
   } while (iter % frameDelay == 0);
 
   iter = 0;
-  sk->move(&exposX, &exposY);
-  s->follow(exposX, exposY, eat, sizeOfSquare, wdw->getRenderer());
+  if (play){
+    sk->move(eat, sizeOfSquare, wdw->getRenderer());
+  } else {
+  SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
+  SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
+  }
   sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
   fr->randomApple(sizeOfSquare, wdw->getRenderer());             
 
@@ -72,4 +85,27 @@ bool Application::runGame(bool done) {
     }
   }
   return false;
+}
+
+bool Application::replay(){
+  const Uint8 *keystate = SDL_GetKeyboardState(NULL);
+  int r = 0;
+
+  SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
+  SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
+  SDL_RenderPresent(wdw->getRenderer());
+  cout << "j'uis arrivé là" << endl;
+  return true;
+  /*while(r == 0){
+    cout << "boucle" << endl;
+    if (keystate[SDL_SCANCODE_RETURN]){
+      cout << "true" << endl;
+      r = 1;
+      return true;
+    }else if (keystate[SDL_SCANCODE_ESCAPE]){
+      cout << "false" << endl;
+      r = 1;
+      return false;
+    }
+  }*/
 }

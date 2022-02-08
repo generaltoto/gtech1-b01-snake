@@ -13,9 +13,9 @@ public:
 
   Segment * next = NULL;
 
-  void move(int* exposX, int*exposY);
+  void move(bool eat, int sizeOfSquare, SDL_Renderer *renderer);
 
-  void keyEnter();
+  void keyEnter(bool *play);
 
   void drawHead(int sizeOfSquare, SDL_Renderer *renderer);
 

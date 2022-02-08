@@ -4,36 +4,41 @@
 
 using namespace std;
 
-void HSnake::move(int* exposX, int*exposY) {
+void HSnake::move(bool eat, int sizeOfSquare, SDL_Renderer *renderer) {
 
-  *exposX = posX;
-  *exposY = posY;
+  int exposX = posX;
+  int exposY = posY;
 
   posX += dirX; //on augmente la position du cube dans la direction choisie
   posY += dirY;
+
+  next->follow(exposX, exposY, eat, sizeOfSquare, renderer);
 }
 
-void HSnake::keyEnter(){
+void HSnake::keyEnter(bool *play){
   const Uint8 *keystate = SDL_GetKeyboardState(NULL);
 
   if (keystate[SDL_SCANCODE_W]) {
-    this->dirX = 0;
-    this->dirY = -1; 
+    dirX = 0;
+    dirY = -1; 
   }
 
   if (keystate[SDL_SCANCODE_S]) {
-    this->dirX = 0;
-    this->dirY = 1; 
+    dirX = 0;
+    dirY = 1; 
   }
 
   if (keystate[SDL_SCANCODE_A]) {
-    this->dirX = -1;
-    this->dirY = 0; 
+    dirX = -1;
+    dirY = 0; 
   }
 
   if (keystate[SDL_SCANCODE_D]) {
-    this->dirX = 1;
-    this->dirY = 0; 
+    dirX = 1;
+    dirY = 0; 
+  }
+  if (keystate[SDL_SCANCODE_SPACE]){
+    *play = !play;
   }
 }
 
@@ -44,7 +49,7 @@ void HSnake::drawHead(int sizeOfSquare, SDL_Renderer *renderer) {
 }
 
 bool HSnake::hcollision(int rows) {
-  if (posX <0 || posX >= rows || posY < 0 || posY >= rows){ 
+  if (this->posX <0 || this->posX >= rows || this->posY < 0 || this->posY >= rows){ 
     return true; 
   }
   return this->next->collision(posX, posY);
