@@ -41,7 +41,6 @@ void Application::deleteWindow() {
 
 bool Application::runGame(bool done) {
   bool eat = false;
-  int exposX, exposY;
   SDL_RenderClear(wdw->getRenderer());
 
   wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);
@@ -56,7 +55,6 @@ bool Application::runGame(bool done) {
     color = 3;
   }
 
-
   if (sk->isOnApple(fr->appleX, fr->appleY)) {
     score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);
     eat = true;
@@ -70,8 +68,6 @@ bool Application::runGame(bool done) {
 
   iter = 0;
   sk->move(eat, sizeOfSquare, wdw->getRenderer());
-  // SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
-  // SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
   sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
   fr->randomApple(sizeOfSquare, wdw->getRenderer());             
 
@@ -104,21 +100,26 @@ bool Application::replay(){
   const Uint8 *keystate = SDL_GetKeyboardState(NULL);
   int r = 0;
 
-  SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
-  SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
-  SDL_RenderPresent(wdw->getRenderer());
-  cout << "j'uis arrivé là" << endl;
-  return true;
-  /*while(r == 0){
-    cout << "boucle" << endl;
-    if (keystate[SDL_SCANCODE_RETURN]){
-      cout << "true" << endl;
-      r = 1;
-      return true;
-    }else if (keystate[SDL_SCANCODE_ESCAPE]){
-      cout << "false" << endl;
-      r = 1;
+  do {
+    SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
+    if(!image){
+      cout << "Erreur de chargement de l'image : " << SDL_GetError() << endl;
       return false;
     }
-  }*/
+    SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
+    SDL_QueryTexture(monImage, NULL, NULL, 0, 0);
+    SDL_RenderCopy(wdw->getRenderer(), monImage, NULL, 0);
+    SDL_RenderPresent(wdw->getRenderer());
+
+    if(keystate[SDL_SCANCODE_RETURN]){
+      return true;
+    }
+
+    SDL_Event event;
+    while (SDL_PollEvent(&event)) {
+      if (event.type == SDL_QUIT || keystate[SDL_SCANCODE_ESCAPE]) {
+        return false;
+      }
+    }
+  } while(r ==0);
 }

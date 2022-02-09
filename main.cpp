@@ -16,7 +16,7 @@ int main (void) {
       done = a.runGame(done);
     }
     a.deleteObject();
-   } while (!done);
+   } while (a.replay());
    a.deleteWindow();
   return 0;
 }
