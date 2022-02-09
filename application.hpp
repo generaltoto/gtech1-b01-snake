@@ -14,6 +14,7 @@ class Application
 private:
 
   int score;
+  int color;
   int sizeOfSquare = floor(WIDTH / GRID_SIZE);
 
 public: 

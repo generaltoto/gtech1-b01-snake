@@ -18,6 +18,8 @@ void Application::initWindow(){
 void Application::initGame() {
   srand(time(0));
 
+  color = 0;
+
   sk = new HSnake;
   fr = new Fruit;   
   s = new Segment;
@@ -40,6 +42,17 @@ bool Application::runGame(bool done, bool *play) {
   SDL_RenderClear(wdw->getRenderer());
 
   wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);
+  if (score == 10 && color == 0) {
+    wdw->gridColor(score);
+    color = 1;
+  } else if (score == 20 && color == 1) {
+    wdw->gridColor(score);
+    color = 2;
+  } else if (score == 30 && color == 2) {
+    wdw->gridColor(score);
+    color = 3;
+  }
+
 
   if (sk->isOnApple(fr->appleX, fr->appleY)) {
     score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);

@@ -39,7 +39,7 @@ void MainSDLWindow::drawWindow(int sizeOfSquare, int width, int size) {
   SDL_SetRenderDrawColor(renderer, 69, 69, 69, SDL_ALPHA_OPAQUE);
 
 
-  // vert clair : 170, 215, 81
+  //int color = {170, 215, 81};
   // vert foncé : 162, 209, 73
 
   for (int i=0; i<size; i++)
@@ -48,14 +48,37 @@ void MainSDLWindow::drawWindow(int sizeOfSquare, int width, int size) {
     {
       if ((i+j)%2 == 0)
       {
-        SDL_SetRenderDrawColor(renderer, 170, 215, 81, SDL_ALPHA_OPAQUE);
+        SDL_SetRenderDrawColor(renderer, gridLightR, gridLightG, gridLightB, SDL_ALPHA_OPAQUE);
       } else 
       {
-        SDL_SetRenderDrawColor(renderer, 162, 209, 73, SDL_ALPHA_OPAQUE);
+        SDL_SetRenderDrawColor(renderer, gridDarkR, gridDarkG, gridDarkB, SDL_ALPHA_OPAQUE);
       }
       SDL_Rect gridRect = { i * sizeOfSquare, j * sizeOfSquare, sizeOfSquare, sizeOfSquare };
       SDL_RenderFillRect(renderer, &gridRect);
     }
+  }
+}
+
+void MainSDLWindow::gridColor(int score)
+{
+  switch (score) {
+    case 10 :
+      gridLightR = 158; gridLightG = 209; gridLightB = 56;
+
+      gridDarkR = 150; gridDarkG = 202; gridDarkB = 41;
+      break;
+    
+    case 20 :
+      gridLightR = 144; gridLightG = 193; gridLightB = 44;
+
+      gridDarkR = 135; gridDarkG = 181; gridDarkB = 36;
+      break;
+
+    case 30 :
+      gridLightR = 129; gridLightG = 173; gridLightB = 39;
+
+      gridDarkR = 121; gridDarkG = 162; gridDarkB = 32;
+      break;
   }
 }
 
