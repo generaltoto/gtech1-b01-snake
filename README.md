@@ -1,5 +1,5 @@
 Creating a snake using C++ (with SDL2 library)
-Made for Linux environement 
+Made for Linux environment 
 
 # SDL2 library and G++ compiler 
  
@@ -12,7 +12,7 @@ Install G++ compiler and Make :
 ```bash
 sudo apt install g++ make 
 ```
-note : the program should be alble to run with other compilers.
+note : the program should be able to run with other compilers.
 
 # Launch the game & controls
 
