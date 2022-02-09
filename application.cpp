@@ -11,14 +11,15 @@ Uint32 frameStart, frameTime, frameDelay = 70, iter = 0;
 int score = 0;
 bool play = true;
 
-void Application::initWindow(){
+void Application::initWindow(void)
+{
   wdw = new MainSDLWindow;
   wdw->init(WIDTH);
 }
 
-void Application::initGame() {
+void Application::initGame(void) 
+{
   srand(time(0));
-
   color = 0;
 
   sk = new HSnake;
@@ -29,16 +30,19 @@ void Application::initGame() {
   sk->next = s;
 }
 
-void Application::deleteObject() {
+void Application::deleteObject(void)
+{
   score = 0;
   delete sk, fr, s;
 }
 
-void Application::deleteWindow() {
+void Application::deleteWindow(void)
+{
   delete wdw;
 }
 
-bool Application::runGame(bool done) {
+bool Application::runGame(bool done)
+{
   bool eat = false;
   SDL_RenderClear(wdw->getRenderer());
 
@@ -67,44 +71,39 @@ bool Application::runGame(bool done) {
   iter = 0;
 
   sk->move(eat, sizeOfSquare, wdw->getRenderer()); 
-
-  if (!eat) { fr->drawApple(sizeOfSquare, wdw->getRenderer()); }
-  
+  if (!eat) { fr->drawApple(sizeOfSquare, wdw->getRenderer());
+  }
   sk->drawHead(sizeOfSquare, wdw->getRenderer());                                                     
 
   wdw->draw_number(score, 10, WIDTH+10);
-  if(sk->hcollision(GRID_SIZE)) {
-    return true;
+  if(sk->hcollision(GRID_SIZE)) { return true;
   }
 
   frameTime = SDL_GetTicks() - frameStart;
-  if ( frameTime < frameDelay ) {
-		SDL_Delay( frameDelay - frameTime );
+  if ( frameTime < frameDelay ) { SDL_Delay( frameDelay - frameTime );
 	}
 
   SDL_SetRenderDrawColor(wdw->getRenderer(), 0, 0, 0, 255);
-
   SDL_RenderPresent(wdw->getRenderer());
-
   SDL_UpdateWindowSurface(wdw->getWindow());
     
   SDL_Event event;
   while (SDL_PollEvent(&event)) {
-    if (event.type == SDL_QUIT) {
-      return true;
+    if (event.type == SDL_QUIT) { return true;
     }
   }
   return false;
 }
 
-bool Application::replay(){
+bool Application::replay(void)
+{
   const Uint8 *keystate = SDL_GetKeyboardState(NULL);
   int r = 0;
 
   do {
     SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
     if(!image){
-      cout << "Erreur de chargement de l'image : " << SDL_GetError() << endl;
+      std::cout << "IMG LOADING ERROR : " << SDL_GetError() << std::endl;
       return false;
     }
     SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
@@ -119,8 +118,7 @@ bool Application::replay(){
 
     SDL_Event event;
     while (SDL_PollEvent(&event)) {
-      if (event.type == SDL_QUIT || keystate[SDL_SCANCODE_ESCAPE]) {
-        return false;
+      if (event.type == SDL_QUIT || keystate[SDL_SCANCODE_ESCAPE]) { return false;
       }
     }
   } while(r ==0);

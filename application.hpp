@@ -21,21 +21,21 @@ public:
   Segment *s;
   MainSDLWindow *wdw;
 
-  void initWindow(); 
+  void initWindow(void); 
   //Window Init 
 
-  void initGame(); 
+  void initGame(void); 
   //Game init 
 
   bool runGame(bool done); 
   //Game mechanic
 
-  void deleteObject(); 
+  void deleteObject(void); 
   //clearing all objects for memory
 
-  void deleteWindow(); 
+  void deleteWindow(void); 
   //clearing window on quit
 
-  bool replay(); 
+  bool replay(void); 
   //allowing player to replay
 };

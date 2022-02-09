@@ -3,7 +3,8 @@
 
 bool done;
 
-int main (void) {
+int main (void)
+{
   Application a; //using app object 
   a.initWindow();
   do {

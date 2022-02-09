@@ -1,9 +1,8 @@
 #pragma once 
 #include <SDL2/SDL.h>
 
-class Fruit {
-private:
-
+class Fruit
+{
 public:
 
   int appleX, appleY;
@@ -22,5 +21,5 @@ public:
   //displaying apple 
 
   void newApple(int sizeOfSquare, SDL_Renderer *renderer, int rows, int posX, int posY, int * score); 
-  //coming from NewApple, creates a new apple
+  //creates a new apple when the active one is eaten
 };

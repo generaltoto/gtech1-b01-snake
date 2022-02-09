@@ -1,17 +1,14 @@
 #pragma once 
 #include <SDL2/SDL.h>
 
-class Segment {
-private:
-    
+class Segment 
+{
 public:
   int posX = 0, posY = 0;
 
   int segmentR, segmentG, segmentB;
 
   Segment * next = NULL;
-
-  Segment(){}
 
   void init(int nposX, int nposY); 
   //creating segment, following the one before him

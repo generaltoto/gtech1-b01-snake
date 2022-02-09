@@ -17,7 +17,7 @@ public:
   void move(bool eat, int sizeOfSquare, SDL_Renderer *renderer);
   //Moving snake and following segments
 
-  void keyEnter();
+  void keyEnter(void);
   //checking for keyboard key press
 
   void drawHead(int sizeOfSquare, SDL_Renderer *renderer);

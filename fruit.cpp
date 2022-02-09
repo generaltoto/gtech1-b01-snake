@@ -2,8 +2,9 @@
 #include "snake.hpp"
 #include "application.hpp"
 
-void Fruit::initApple(int rows, int posX, int posY) {
-  n = rand() % 8;
+void Fruit::initApple(int rows, int posX, int posY)
+{
+  n = rand() % 8; //might seem to never appear but I guarantee you it works ;-)
 
   appleR = 255, appleG = 0, appleB = 0;
 
@@ -14,7 +15,7 @@ void Fruit::initApple(int rows, int posX, int posY) {
 void Fruit::rgbFruit(void)
 {
   if (appleR == 255 && appleG < 255 && appleB == 0){
-  appleG+=15;
+    appleG+=15;
   }
   else if (appleR > 0 && appleG == 255){
     appleR-=15;
@@ -33,7 +34,8 @@ void Fruit::rgbFruit(void)
   }
 }
 
-void Fruit::drawApple (int sizeOfSquare, SDL_Renderer *renderer) {
+void Fruit::drawApple (int sizeOfSquare, SDL_Renderer *renderer)
+{
   if (n==0) { 
     rgbFruit(); 
   } else {
@@ -47,9 +49,12 @@ void Fruit::drawApple (int sizeOfSquare, SDL_Renderer *renderer) {
   SDL_RenderFillRect(renderer, &rect); 
 }
 
-void Fruit::newApple (int sizeOfSquare, SDL_Renderer *renderer, int rows, int posX, int posY, int * score) {
-  if (n != 0) { *score = *score + 1; }
-  else { *score = *score + 2; }
+void Fruit::newApple (int sizeOfSquare, SDL_Renderer *renderer, int rows, int posX, int posY, int * score)
+{
+  if (n != 0) { *score = *score + 1;
+  }
+  else { *score = *score + 2;
+  }
   
   initApple(rows, posX, posY);
   drawApple(sizeOfSquare, renderer);
