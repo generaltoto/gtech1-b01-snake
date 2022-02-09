@@ -26,7 +26,7 @@ public:
 
   void initGame();
 
-  bool runGame(bool done, bool *play);
+  bool runGame(bool done);
 
   int getScore(int score);
 

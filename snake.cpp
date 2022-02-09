@@ -5,17 +5,16 @@
 using namespace std;
 
 void HSnake::move(bool eat, int sizeOfSquare, SDL_Renderer *renderer) {
-
-  int exposX = posX;
-  int exposY = posY;
-
-  posX += dirX; //on augmente la position du cube dans la direction choisie
-  posY += dirY;
-
-  next->follow(exposX, exposY, eat, sizeOfSquare, renderer);
+  if (dirX != 0 || dirY != 0){
+    int exposX = posX;
+    int exposY = posY;
+    posX += dirX; //on augmente la position du cube dans la direction choisie
+    posY += dirY;
+    next->follow(exposX, exposY, eat, sizeOfSquare, renderer);
+  }
 }
 
-void HSnake::keyEnter(bool *play){
+void HSnake::keyEnter(){
   const Uint8 *keystate = SDL_GetKeyboardState(NULL);
 
   if (keystate[SDL_SCANCODE_W]) {
@@ -38,7 +37,8 @@ void HSnake::keyEnter(bool *play){
     dirY = 0; 
   }
   if (keystate[SDL_SCANCODE_SPACE]){
-    *play = !play;
+    dirX = 0;
+    dirY = 0;
   }
 }
 

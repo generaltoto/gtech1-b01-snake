@@ -9,6 +9,8 @@
 using namespace std;
   
 Uint32 frameStart, frameTime, frameDelay = 70, iter = 0;
+int score = 0;
+bool play = true;
 
 void Application::initWindow(){
   wdw = new MainSDLWindow;
@@ -27,6 +29,7 @@ void Application::initGame() {
 }
 
 void Application::deleteObject() {
+  score = 0;
   delete sk, fr, s;
 }
 
@@ -34,7 +37,7 @@ void Application::deleteWindow() {
   delete wdw;
 }
 
-bool Application::runGame(bool done, bool *play) {
+bool Application::runGame(bool done) {
   bool eat = false;
   int exposX, exposY;
   SDL_RenderClear(wdw->getRenderer());
@@ -48,17 +51,14 @@ bool Application::runGame(bool done, bool *play) {
 
   do {
     frameStart = SDL_GetTicks();
-    sk->keyEnter(play);
+    sk->keyEnter();
     iter ++;                      
   } while (iter % frameDelay == 0);
 
   iter = 0;
-  if (play){
-    sk->move(eat, sizeOfSquare, wdw->getRenderer());
-  } else {
-  SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
-  SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
-  }
+  sk->move(eat, sizeOfSquare, wdw->getRenderer());
+  // SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
+  // SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
   sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
   fr->randomApple(sizeOfSquare, wdw->getRenderer());             
 
