@@ -3,11 +3,12 @@
 #include "segment.hpp"
 
 class HSnake  {
-private: 
 
 public:
 
   int dirX = 1, dirY = 0;
+
+  int headR, headG, headB;
 
   int posX = 5, posY = 5;
 
@@ -17,6 +18,7 @@ public:
 
   void keyEnter(bool *play);
 
+  void drawRGBHead(int sizeOfSquare, SDL_Renderer *renderer);
   void drawHead(int sizeOfSquare, SDL_Renderer *renderer);
 
   bool isOnApple(int appleX, int appleY);

@@ -7,7 +7,13 @@ void Segment::init(int nposX, int nposY) {
   posY = nposY;
 }
 
-void Segment::draw(int sizeOfSquare, SDL_Renderer *renderer) {
+void Segment::drawRGBSegment(int sizeOfSquare, SDL_Renderer *renderer) {
+  SDL_SetRenderDrawColor(renderer, segmentR, segmentG, segmentB, SDL_ALPHA_OPAQUE);
+  SDL_Rect rect = { this->posX * sizeOfSquare, this->posY * sizeOfSquare, sizeOfSquare, sizeOfSquare };
+  SDL_RenderFillRect(renderer, &rect);
+}
+
+void Segment::drawSegment(int sizeOfSquare, SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, 70, 115, 232, SDL_ALPHA_OPAQUE);
   SDL_Rect rect = { this->posX * sizeOfSquare, this->posY * sizeOfSquare, sizeOfSquare, sizeOfSquare };
   SDL_RenderFillRect(renderer, &rect);

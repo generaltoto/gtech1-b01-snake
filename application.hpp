@@ -15,13 +15,16 @@ private:
 
   int score;
   int color;
+  int n;
   int sizeOfSquare = floor(WIDTH / GRID_SIZE);
 
 public: 
-    HSnake *sk;
-    Fruit *fr;   
-    Segment *s;
-    MainSDLWindow *wdw;
+  HSnake *sk;
+  Fruit *fr;   
+  Segment *s;
+  MainSDLWindow *wdw;
+
+  void rgbColor (int R, int G, int B);
 
   void initWindow();
 

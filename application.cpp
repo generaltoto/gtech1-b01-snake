@@ -10,6 +10,31 @@ using namespace std;
   
 Uint32 frameStart, frameTime, frameDelay = 70, iter = 0;
 
+void Application::rgbColor (int R, int G, int B) 
+{
+  if (R == 255 && G < 255 && B == 0){
+  G+=15;
+  }
+  else if (R > 0 && G == 255){
+    R-=15;
+  }
+  else if (G == 255 && B < 255){
+    B+=15;
+  }
+  else if (G > 0 && B == 255){
+    G-=15;
+  }
+  else if (B == 255 && R < 255){
+    R+=15;
+  }
+  else if (B > 0 && R == 255){
+    B-=15;
+  }
+
+  fr->appleR = R; fr->appleG = G; fr->appleB = B;
+  sk->headR = R; sk->headG = G; sk->headB = B;
+}
+
 void Application::initWindow(){
   wdw = new MainSDLWindow;
   wdw->init(WIDTH);
@@ -55,7 +80,8 @@ bool Application::runGame(bool done, bool *play) {
 
 
   if (sk->isOnApple(fr->appleX, fr->appleY)) {
-    score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);
+    score += 1;
+    n = fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);
     eat = true;
   }
 
@@ -72,8 +98,32 @@ bool Application::runGame(bool done, bool *play) {
   SDL_Surface* image = SDL_LoadBMP("gameover.bmp");
   SDL_Texture* monImage = SDL_CreateTextureFromSurface(wdw->getRenderer(),image);
   }
-  sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
-  fr->randomApple(sizeOfSquare, wdw->getRenderer());             
+
+
+  if (n == 0) 
+  {
+    fr->fruitType = 1;
+    rgbColor(fr->appleR, fr->appleG, fr->appleB);
+    fr->drawRGBApple(sizeOfSquare, wdw->getRenderer());
+  } 
+  else
+  {
+    fr->fruitType = 0;
+    fr->drawApple(sizeOfSquare, wdw->getRenderer());
+  } 
+
+
+  if (fr->fruitType == 1) 
+  {
+    rgbColor(sk->headR, sk->headG, sk->headB);
+    sk->drawRGBHead(sizeOfSquare, wdw->getRenderer());
+  } 
+  else if (fr->fruitType == 0) 
+  {
+    sk->drawHead(sizeOfSquare, wdw->getRenderer());
+  }
+
+                                   
 
   wdw->draw_number(score, 10, WIDTH+10);
   if(sk->hcollision(GRID_SIZE)) {
