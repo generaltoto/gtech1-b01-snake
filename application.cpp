@@ -65,8 +65,8 @@ bool Application::runGame(bool done) {
     sk->keyEnter();
     iter ++;                      
   } while (iter % frameDelay == 0);
-
   iter = 0;
+
   sk->move(eat, sizeOfSquare, wdw->getRenderer());
   sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
   fr->randomApple(sizeOfSquare, wdw->getRenderer());             
@@ -76,16 +76,16 @@ bool Application::runGame(bool done) {
     return true;
   }
 
+  frameTime = SDL_GetTicks() - frameStart;
+  if ( frameTime < frameDelay ) {
+		SDL_Delay( frameDelay - frameTime );
+	}
+
   SDL_SetRenderDrawColor(wdw->getRenderer(), 0, 0, 0, 255);
 
   SDL_RenderPresent(wdw->getRenderer());
 
   SDL_UpdateWindowSurface(wdw->getWindow());
-
-  frameTime = SDL_GetTicks() - frameStart;
-  if ( frameTime < frameDelay ) {
-		SDL_Delay( frameDelay - frameTime );
-	}
     
   SDL_Event event;
   while (SDL_PollEvent(&event)) {
@@ -112,6 +112,7 @@ bool Application::replay(){
     SDL_RenderPresent(wdw->getRenderer());
 
     if(keystate[SDL_SCANCODE_RETURN]){
+      SDL_RenderClear(wdw->getRenderer());
       return true;
     }
 
