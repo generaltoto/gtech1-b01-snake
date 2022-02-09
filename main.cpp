@@ -4,22 +4,19 @@
 
 using namespace std;
 
-bool done = false;
-bool play = true;
+bool done;
 
 int main (void) {
   Application a;
   a.initWindow();
   do {
     done = false;
-    cout << "start" << endl;
     a.initGame();
     while (!done) {
-      done = a.runGame(done, &play);
+      done = a.runGame(done);
     }
-    //play = a.replay();
     a.deleteObject();
-   } while (play);
+   } while (a.replay());
    a.deleteWindow();
   return 0;
 }

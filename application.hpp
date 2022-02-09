@@ -13,7 +13,6 @@ class Application
 {
 private:
 
-  int score;
   int color;
   int n;
   int sizeOfSquare = floor(WIDTH / GRID_SIZE);
@@ -30,9 +29,7 @@ public:
 
   void initGame();
 
-  bool runGame(bool done, bool *play);
-
-  int getScore(int score);
+  bool runGame(bool done);
 
   void deleteObject();
 

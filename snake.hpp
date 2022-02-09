@@ -16,7 +16,7 @@ public:
 
   void move(bool eat, int sizeOfSquare, SDL_Renderer *renderer);
 
-  void keyEnter(bool *play);
+  void keyEnter();
 
   void drawRGBHead(int sizeOfSquare, SDL_Renderer *renderer);
   void drawHead(int sizeOfSquare, SDL_Renderer *renderer);
