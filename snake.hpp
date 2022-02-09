@@ -18,7 +18,6 @@ public:
 
   void keyEnter();
 
-  void drawRGBHead(int sizeOfSquare, SDL_Renderer *renderer);
   void drawHead(int sizeOfSquare, SDL_Renderer *renderer);
 
   bool isOnApple(int appleX, int appleY);

@@ -14,7 +14,6 @@ class Application
 private:
 
   int color;
-  int n;
   int sizeOfSquare = floor(WIDTH / GRID_SIZE);
 
 public: 
@@ -22,8 +21,6 @@ public:
   Fruit *fr;   
   Segment *s;
   MainSDLWindow *wdw;
-
-  void rgbColor (int R, int G, int B);
 
   void initWindow();
 

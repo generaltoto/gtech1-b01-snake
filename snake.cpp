@@ -41,11 +41,6 @@ void HSnake::keyEnter(){
     dirY = 0;
   }
 }
-void HSnake::drawRGBHead(int sizeOfSquare, SDL_Renderer *renderer) {
-  SDL_SetRenderDrawColor(renderer, headR, headG, headB, SDL_ALPHA_OPAQUE);
-  SDL_Rect rect = { posX * sizeOfSquare, posY * sizeOfSquare, sizeOfSquare, sizeOfSquare };
-  SDL_RenderFillRect(renderer, &rect);
-}
 
 void HSnake::drawHead(int sizeOfSquare, SDL_Renderer *renderer) {
   SDL_SetRenderDrawColor(renderer, 20, 66, 186, SDL_ALPHA_OPAQUE);

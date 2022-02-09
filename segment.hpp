@@ -19,6 +19,5 @@ public:
 
   bool collision(int hposX, int hposY);
 
-  void drawRGBSegment(int sizeOfSquare, SDL_Renderer *renderer);
   void drawSegment(int sizeOfSquare, SDL_Renderer *renderer);
 };
