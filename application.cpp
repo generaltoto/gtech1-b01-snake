@@ -44,19 +44,19 @@ bool Application::runGame(bool done) {
   SDL_RenderClear(wdw->getRenderer());
 
   wdw->drawWindow(sizeOfSquare, WIDTH, GRID_SIZE);
-  if (score == 10 && color == 0) {
+  if (score >= 10 && color == 0) {
     wdw->gridColor(score);
     color = 1;
-  } else if (score == 20 && color == 1) {
+  } else if (score >= 20 && color == 1) {
     wdw->gridColor(score);
     color = 2;
-  } else if (score == 30 && color == 2) {
+  } else if (score >= 30 && color == 2) {
     wdw->gridColor(score);
     color = 3;
   }
 
   if (sk->isOnApple(fr->appleX, fr->appleY)) {
-    score += fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY);
+    fr->newApple(sizeOfSquare, wdw->getRenderer(), GRID_SIZE, sk->posX, sk->posY,&score);
     eat = true;
   }
 
@@ -67,9 +67,11 @@ bool Application::runGame(bool done) {
   } while (iter % frameDelay == 0);
   iter = 0;
 
-  sk->move(eat, sizeOfSquare, wdw->getRenderer());
-  sk->drawHead(sizeOfSquare, wdw->getRenderer());                        
-  fr->randomApple(sizeOfSquare, wdw->getRenderer());             
+  sk->move(eat, sizeOfSquare, wdw->getRenderer()); 
+
+  if (!eat) { fr->drawApple(sizeOfSquare, wdw->getRenderer()); }
+  
+  sk->drawHead(sizeOfSquare, wdw->getRenderer());                                                     
 
   wdw->draw_number(score, 10, WIDTH+10);
   if(sk->hcollision(GRID_SIZE)) {
@@ -123,4 +125,6 @@ bool Application::replay(){
       }
     }
   } while(r ==0);
+
+  return false;
 }

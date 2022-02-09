@@ -3,11 +3,12 @@
 #include "segment.hpp"
 
 class HSnake  {
-private: 
 
 public:
 
   int dirX = 1, dirY = 0;
+
+  int headR, headG, headB;
 
   int posX = 5, posY = 5;
 
