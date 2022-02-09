@@ -1,11 +1,9 @@
-#include <iostream>
 #include "fruit.hpp"
 #include "snake.hpp"
 #include "application.hpp"
 
 void Fruit::initApple(int rows, int posX, int posY) {
-  n = rand() % 2;
-  std::cout << n << std::endl;
+  n = rand() % 8;
 
   appleR = 255, appleG = 0, appleB = 0;
 
@@ -49,7 +47,7 @@ void Fruit::drawApple (int sizeOfSquare, SDL_Renderer *renderer) {
   SDL_RenderFillRect(renderer, &rect); 
 }
 
-int Fruit::newApple (int sizeOfSquare, SDL_Renderer *renderer, int rows, int posX, int posY, int * score) {
+void Fruit::newApple (int sizeOfSquare, SDL_Renderer *renderer, int rows, int posX, int posY, int * score) {
   if (n != 0) { *score = *score + 1; }
   else { *score = *score + 2; }
   

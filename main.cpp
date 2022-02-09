@@ -1,22 +1,19 @@
 #include <SDL2/SDL.h>
-#include <iostream>
 #include "application.hpp"
-
-using namespace std;
 
 bool done;
 
 int main (void) {
-  Application a;
+  Application a; //using app object 
   a.initWindow();
   do {
     done = false;
     a.initGame();
-    while (!done) {
+    while (!done) { //game loop
       done = a.runGame(done);
     }
     a.deleteObject();
-   } while (a.replay());
+   } while (a.replay()); //replay loop
    a.deleteWindow();
   return 0;
 }

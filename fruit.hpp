@@ -13,12 +13,14 @@ public:
   int n;
 
   void initApple(int rows, int posX, int posY);
+  //init of apple coordinates and 1/8 chance to spacial apple
 
   void rgbFruit(void);
+  //function for rgb colors
 
   void drawApple(int sizeOfSquare, SDL_Renderer *renderer);
+  //displaying apple 
 
-  int newApple(int sizeOfSquare, SDL_Renderer *renderer, int rows, int posX, int posY, int * score);
-
-  bool isOnApple (void);
+  void newApple(int sizeOfSquare, SDL_Renderer *renderer, int rows, int posX, int posY, int * score); 
+  //coming from NewApple, creates a new apple
 };

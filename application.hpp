@@ -1,5 +1,4 @@
 #pragma once 
-
 #include <SDL2/SDL.h>
 #include "snake.hpp"
 #include "mainSDLWindow.hpp"
@@ -22,15 +21,21 @@ public:
   Segment *s;
   MainSDLWindow *wdw;
 
-  void initWindow();
+  void initWindow(); 
+  //Window Init 
 
-  void initGame();
+  void initGame(); 
+  //Game init 
 
-  bool runGame(bool done);
+  bool runGame(bool done); 
+  //Game mechanic
 
-  void deleteObject();
+  void deleteObject(); 
+  //clearing all objects for memory
 
-  void deleteWindow();
+  void deleteWindow(); 
+  //clearing window on quit
 
-  bool replay();
+  bool replay(); 
+  //allowing player to replay
 };

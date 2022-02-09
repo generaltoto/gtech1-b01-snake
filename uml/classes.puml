@@ -7,22 +7,34 @@
 /' Objects '/
 
 class Application {
+	+fr : Fruit*
+	+sk : HSnake*
+	+wdw : MainSDLWindow*
+	+s : Segment*
+	+replay() : bool
 	+runGame(bool done) : bool
-	+getScore(int score) : int
-	-score : int
+	-color : int
 	-sizeOfSquare : int
 	+deleteObject() : void
+	+deleteWindow() : void
 	+initGame() : void
+	+initWindow() : void
 }
 
 
 class Fruit {
-	+isOnApple() : bool
+	+appleR : int
+	+appleR : int
+	+appleR : int
+	+appleR : int
+	+appleR : int
 	+appleX : int
 	+appleY : int
-	+newApple(int sizeOfSquare, SDL_Renderer* renderer, int rows, int posX, int posY) : int
+	+n : int
+	+drawApple(int sizeOfSquare, SDL_Renderer* renderer) : void
 	+initApple(int rows, int posX, int posY) : void
-	+randomApple(int sizeOfSquare, SDL_Renderer* renderer) : void
+	+newApple(int sizeOfSquare, SDL_Renderer* renderer, int rows, int posX, int posY, int* score) : void
+	+rgbFruit() : void
 }
 
 
@@ -33,12 +45,15 @@ class HSnake {
 	+dirX : int
 	+dirX : int
 	+dirX : int
+	+headB : int
+	+headG : int
+	+headR : int
 	+posX : int
 	+posX : int
 	+posX : int
 	+drawHead(int sizeOfSquare, SDL_Renderer* renderer) : void
 	+keyEnter() : void
-	+move(int* exposX, int* exposY) : void
+	+move(bool eat, int sizeOfSquare, SDL_Renderer* renderer) : void
 }
 
 
@@ -49,10 +64,21 @@ class MainSDLWindow {
 	-renderer : SDL_Renderer*
 	+getWindow() : SDL_Window*
 	-window : SDL_Window*
-	+init(int width, int score) : int
+	+gridDarkR : int
+	+gridDarkR : int
+	+gridDarkR : int
+	+gridDarkR : int
+	+gridDarkR : int
+	+gridLightR : int
+	+gridLightR : int
+	+gridLightR : int
+	+gridLightR : int
+	+gridLightR : int
+	+init(int width) : int
 	+drawWindow(int SizeOfSquare, int width, int size) : void
 	+draw_digit(int digit, int posX, int posY) : void
 	+draw_number(int number, int posX, int posY) : void
+	+gridColor(int score) : void
 }
 
 
@@ -63,7 +89,10 @@ class Segment {
 	+posX : int
 	+posX : int
 	+posX : int
-	+draw(int sizeOfSquare, SDL_Renderer* renderer) : void
+	+segmentB : int
+	+segmentG : int
+	+segmentR : int
+	+drawSegment(int sizeOfSquare, SDL_Renderer* renderer) : void
 	+follow(int exposX, int exposY, bool eat, int sizeOfSquare, SDL_Renderer* renderer) : void
 	+init(int nposX, int nposY) : void
 }
@@ -78,6 +107,18 @@ class Segment {
 
 
 /' Aggregation relationships '/
+
+.Application o-- .Fruit
+
+
+.Application o-- .HSnake
+
+
+.Application o-- .MainSDLWindow
+
+
+.Application o-- .Segment
+
 
 .HSnake o-- .Segment
 

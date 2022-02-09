@@ -1,4 +1,3 @@
-#include <iostream>
 #include "snake.hpp"
 #include "fruit.hpp"
 

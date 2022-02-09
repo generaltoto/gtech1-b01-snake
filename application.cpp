@@ -1,5 +1,4 @@
 #include <iostream>
-
 #include "application.hpp"
 #include "mainSDLWindow.hpp"
 #include "snake.hpp"

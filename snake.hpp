@@ -15,13 +15,18 @@ public:
   Segment * next = NULL;
 
   void move(bool eat, int sizeOfSquare, SDL_Renderer *renderer);
+  //Moving snake and following segments
 
   void keyEnter();
+  //checking for keyboard key press
 
   void drawHead(int sizeOfSquare, SDL_Renderer *renderer);
+  //drawing the snake's head
 
   bool isOnApple(int appleX, int appleY);
+  //checking is the snake is eating the apple
 
   bool hcollision(int rows);
+  //checking is the snake is hitting a wall
 
 };

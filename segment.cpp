@@ -1,6 +1,4 @@
-#include <iostream>
 #include "segment.hpp"
-using namespace std;
 
 void Segment::init(int nposX, int nposY) {
   posX = nposX;
